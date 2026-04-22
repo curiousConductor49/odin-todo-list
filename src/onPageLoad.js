@@ -1,4 +1,4 @@
-export default function onPageLoad() {
+export default function initlocalStorageData() {
     if (localStorage.getItem("todoAppData")) {
         return;
     } else if (localStorage.getItem("todoAppData") === null) {
@@ -8,7 +8,7 @@ export default function onPageLoad() {
                 {
                     title: "Default Tuxedo",
                     id: defaultListID,
-                    desription: "..."
+                    description: "..."
                 },
             ],
             todoItems: [],
