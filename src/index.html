@@ -6,6 +6,34 @@
     <title>Document</title>
 </head>
 <body>
+    <main>
+        <section id="app-dashboard">
+            <h1>Meowmos, the todo app with cats</h1>
+            <aside id="control-panel">
+                <div class="new-btns-container">
+                    <h2>Make something new!</h2>
+                    <button id="new-item-btn">New item</button>
+                    <button id="new-list-btn">New list</button>
+                </div>
+                <div class="view-options-container">
+                    <h2>View Options</h2>
+                    <button id="all-items-btn">All items</button>
+                    <button id="all-lists-btn">All lists</button>
+                    <label for="todo-list-dropdown">Specific List</label>
+                    <select name="todo-list-dropdown" id="todo-list-dropdown">
+                        // options pulled from localStorage
+                    </select>
+                </div>
+            </aside>
+            <section id="data-display">
+                <p id="placeholder-content">"Meow, meow, meow!"</p>
+            </section>
+            <section id="forms-container">
+                <form id="create-new"></form>
+                <form id="update-existing"></form>
+            </section>
+        </section>
+    </main>
     <script src="index.js" type="module"></script>
 </body>
 </html>
