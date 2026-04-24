@@ -6,6 +6,7 @@ import addTodoItemToStorage from "./crud-ops/addTodoItemToStorage.js";
 import addTodoListToStorage from "./crud-ops/addTodoListToStorage.js";
 import deleteTodoItemFromStorage from "./crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
+import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
@@ -24,7 +25,7 @@ window.addEventListener("load", initlocalStorageData);
 // const list = createTodoList(["tabby cat troubles", "pspspsps! there's not enough laser pens!"]);
 // addTodoListToStorage(list);
 
-// NOTE: when manually testing deleting a todo item/list, be sure to first comment out the code to create and add new items/lists, else the program will delete the specified item/list, then add new items/lists (upon refresh to update localStorage, the program runs again)
+// NOTE: when manually testing deleting or updating a todo item/list, be sure to first comment out the code to create and add new items/lists, else the program will delete/update the specified item/list, then add new items/lists (upon refresh to update localStorage, the program runs again)
 
 // DELETING TODO ITEMS
 // const item = createTodoItem(["kitty", "a meowing cat", "2026-04-17", "high", "defaultList"]);
@@ -48,3 +49,14 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoItemToStorage(item3);
 // delete a list (should delete the list + the todo items under it)
 // deleteTodoListFromStorage("");
+
+// UPDATING TODO ITEMS
+// add new items
+// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "Default Tuxedo"]);
+// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "Default Tuxedo"]);
+// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "Default Tuxedo"]);
+// addTodoItemToStorage(item);
+// addTodoItemToStorage(item2);
+// addTodoItemToStorage(item3);
+// update an item
+// updateTodoItemInStorage(["tortoiseshell", "a yawning cat", "2026-01-01", "medium", "Default Tuxedo"], "af1f871c-c109-45d7-9ddf-c111e1a4b7e1");
