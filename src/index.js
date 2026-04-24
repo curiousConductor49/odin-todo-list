@@ -7,6 +7,7 @@ import addTodoListToStorage from "./crud-ops/addTodoListToStorage.js";
 import deleteTodoItemFromStorage from "./crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
+import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
@@ -60,3 +61,12 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoItemToStorage(item3);
 // update an item
 // updateTodoItemInStorage(["tortoiseshell", "a yawning cat", "2026-01-01", "medium", "Default Tuxedo"], "af1f871c-c109-45d7-9ddf-c111e1a4b7e1");
+
+// UPDATING TODO LISTS
+// add new lists
+// const list = createTodoList(["tabby troubles", "..."]);
+// const list2 = createTodoList(["bengal biscuits", "..."]);
+// addTodoListToStorage(list);
+// addTodoListToStorage(list2);
+// update a list
+// updateTodoListInStorage(["chartreux chuckles", "meow, world!"], "66f8b0ec-ec58-4a49-ac61-c56fdb71f445");
