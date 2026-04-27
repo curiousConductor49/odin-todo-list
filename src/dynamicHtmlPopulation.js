@@ -81,3 +81,72 @@ export function populateNewTodoListFormFields() {
         console.log("Error:", error);
     }
 }
+
+export function populateExistingTodoItemFormFields(todoItemId) {
+    try {
+        // get JSON data
+        const appData = JSON.parse(localStorage.getItem("todoAppData"));
+        const todoItems = appData["todoItems"];
+        const todoLists = appData["todoLists"];
+        const currentTodoItem = todoItems.find(item => item.id === todoItemId);
+
+        // create the option elements for parent lists and set the option for the current todo item's parent todo list as selected
+        const parentListOptionsHTML = todoLists.map(list => {
+            if (list.title === currentTodoItem.priority) {
+                return `<option value="${list.title}" selected>${list.title}</option>`
+            } else {
+                return `<option value="${list.title}">${list.title}</option>`
+            }
+        }).join("");
+        
+        // create the option elements for priority level and set the option for the current todo item's priority as selected
+        const priorityLevels = ["High", "Medium", "Low"];
+        const priorityOptionsHTML = priorityLevels.map(level => {
+            if (level.toLowerCase() === currentTodoItem.priority) {
+                return `<option value="${level.toLowerCase()}" selected>${level}</option>`
+            } else {
+                return `<option value="${level.toLowerCase()}">${level}</option>`
+            }
+        }).join("");
+
+        // create form fields
+        const formFieldsHTML = `
+            <div class="field-container">
+                <label for="item-title">Name:</label>
+                <input type="text" id="item-title" name="item-title" value="${currentTodoItem.title}">
+            </div>
+            
+            <div class="field-container">
+                <label for="item-description">Description: </label>
+                <textarea id="item-description" col="15" row="30">${currentTodoItem.description}</textarea>
+            </div>
+            
+            <div class="field-container">
+                <label for="item-due-date">Due Date:</label>
+                <input type="date" id="item-due-date" name="item-due-date" value="${currentTodoItem.dueDate}">
+            </div>
+            
+            <div class="field-container">
+                <label for="item-priority">Priority:</label>
+                <select id="item-priority">
+                    ${priorityOptionsHTML};
+                </select>
+            </div>
+            
+            <div class="field-container">
+                <label for="todo-list-parent">Todo List:</label>
+                <select id="todo-list-parent">
+                    ${parentListOptionsHTML}
+                </select>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" id="submit-form-btn">Add</button>
+                <button id="close-form-btn">Close</button>
+            </div>
+        `
+        return formFieldsHTML;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
