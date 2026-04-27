@@ -81,7 +81,20 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoListToStorage(list);
 // addTodoListToStorage(list2);
 
-// POPULATING FORM W/ TODO ITEM FIELDS
+// POPULATING "CREATE NEW" FORM W/ TODO ITEM FIELDS AND TODO LIST FIELDS
 const createNewForm = document.querySelector("#create-new");
 // createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoListFormFields();
 // createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoItemFormFields();
+
+// POPULATING "UPDATE EXISTING" FORM W/ TODO ITEM FIELDS AND TODO LIST FIELDS
+// create new items
+// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "Default Tuxedo"]);
+// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "Default Tuxedo"]);
+// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "Default Tuxedo"]);
+// // add new items
+// addTodoItemToStorage(item);
+// addTodoItemToStorage(item2);
+// addTodoItemToStorage(item3);
+// populate form
+// const updateExistingForm = document.querySelector("#update-existing");
+// updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields("0eebfca4-3535-491e-b8df-4cce28b2ff9c");
