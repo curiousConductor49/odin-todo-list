@@ -9,7 +9,7 @@ export default function createTodoItem(inputData) {
         title,
         id: crypto.randomUUID(),
         description,
-        dueDate: new Date(dueDate).toISOString(),
+        dueDate,
         priority,
         parentListTitle: parentList,
         parentListId: parentTodoListId, 
