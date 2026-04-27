@@ -46,7 +46,32 @@ export function populateTodoItemFormFields() {
                 </select>
             </div>
 
-            <div id="btn-container>
+            <div class="btn-container">
+                <button type="submit" id="submit-form-btn">Add</button>
+                <button id="close-form-btn">Close</button>
+            </div>
+        `
+        return formFieldsHTML;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+
+export function populateTodoListFormFields() {
+    try {
+        // create form fields
+        const formFieldsHTML = `
+            <div class="field-container">
+                <label for="item-title">Name:</label>
+                <input type="text" id="item-title" name="item-title" placeholder="a guide to making lap biscuits">
+            </div>
+            
+            <div class="field-container">
+                <label for="list-description">Description: </label>
+                <textarea id="list-description" col="15" row="30" placeholder="baking biscuits, baking biscuits!"></textarea>
+            </div>
+            
+            <div class="btn-container">
                 <button type="submit" id="submit-form-btn">Add</button>
                 <button id="close-form-btn">Close</button>
             </div>
