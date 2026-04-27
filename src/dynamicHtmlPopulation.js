@@ -45,6 +45,11 @@ export function populateTodoItemFormFields() {
                     ${populateTodoListDropdown()};
                 </select>
             </div>
+
+            <div id="btn-container>
+                <button type="submit" id="submit-form-btn">Add</button>
+                <button id="close-form-btn">Close</button>
+            </div>
         `
         return formFieldsHTML;
     } catch (error) {
