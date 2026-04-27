@@ -62,8 +62,8 @@ export function populateNewTodoListFormFields() {
         // create form fields
         const formFieldsHTML = `
             <div class="field-container">
-                <label for="item-title">Name:</label>
-                <input type="text" id="item-title" name="item-title" placeholder="a guide to making lap biscuits">
+                <label for="list-title">Name:</label>
+                <input type="text" id="list-title" name="list-title" placeholder="a guide to making lap biscuits">
             </div>
             
             <div class="field-container">
@@ -140,6 +140,35 @@ export function populateExistingTodoItemFormFields(todoItemId) {
                 </select>
             </div>
 
+            <div class="btn-container">
+                <button type="submit" id="submit-form-btn">Add</button>
+                <button id="close-form-btn">Close</button>
+            </div>
+        `
+        return formFieldsHTML;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+
+export function populateExistingTodoListFormFields(todoListId) {
+    try {
+        // get JSON data
+        const appData = JSON.parse(localStorage.getItem("todoAppData"));
+        const todoLists = appData["todoLists"];
+        const currentTodoList = todoLists.find(list => list.id === todoListId);
+        // create form fields
+        const formFieldsHTML = `
+            <div class="field-container">
+                <label for="list-title">Name:</label>
+                <input type="text" id="list-title" name="list-title" value="${currentTodoList.title}">
+            </div>
+            
+            <div class="field-container">
+                <label for="list-description">Description: </label>
+                <textarea id="list-description" col="15" row="30">${currentTodoList.description}</textarea>
+            </div>
+            
             <div class="btn-container">
                 <button type="submit" id="submit-form-btn">Add</button>
                 <button id="close-form-btn">Close</button>
