@@ -82,5 +82,6 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoListToStorage(list2);
 
 // POPULATING FORM W/ TODO ITEM FIELDS
-// const createNewForm = document.querySelector("#create-new");
+const createNewForm = document.querySelector("#create-new");
+// createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoListFormFields();
 // createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoItemFormFields();
