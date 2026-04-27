@@ -8,7 +8,7 @@ import deleteTodoItemFromStorage from "./crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
-import * as dynamicHTMLPopulator from "./dynamic-html-population.js";
+import * as dynamicHTMLPopulator from "./dynamicHtmlPopulation.js";
 
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
@@ -80,3 +80,7 @@ window.addEventListener("load", initlocalStorageData);
 // const list2 = createTodoList(["bengal biscuits", "..."]);
 // addTodoListToStorage(list);
 // addTodoListToStorage(list2);
+
+// POPULATING FORM W/ TODO ITEM FIELDS
+// const createNewForm = document.querySelector("#create-new");
+// createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoItemFormFields();
