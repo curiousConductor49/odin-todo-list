@@ -8,6 +8,7 @@ import deleteTodoItemFromStorage from "./crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
+import * as dynamicHTMLPopulator from "./dynamic-html-population.js";
 
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
@@ -70,3 +71,12 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoListToStorage(list2);
 // update a list
 // updateTodoListInStorage(["chartreux chuckles", "meow, world!"], "66f8b0ec-ec58-4a49-ac61-c56fdb71f445");
+
+// POPULATING A SELECT ELEMENT W/ OPTIONS
+// const todoDropdown = document.querySelector("#todo-list-dropdown");
+// todoDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown(todoDropdown);
+// // add new lists
+// const list = createTodoList(["tabby troubles", "..."]);
+// const list2 = createTodoList(["bengal biscuits", "..."]);
+// addTodoListToStorage(list);
+// addTodoListToStorage(list2);
