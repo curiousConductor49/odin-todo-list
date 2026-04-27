@@ -11,7 +11,7 @@ export function populateTodoListDropdown() {
     }
 }
 
-export function populateTodoItemFormFields() {
+export function populateNewTodoItemFormFields() {
     try {
         // create form fields
         const formFieldsHTML = `
@@ -57,7 +57,7 @@ export function populateTodoItemFormFields() {
     }
 }
 
-export function populateTodoListFormFields() {
+export function populateNewTodoListFormFields() {
     try {
         // create form fields
         const formFieldsHTML = `
