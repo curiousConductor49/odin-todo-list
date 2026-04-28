@@ -1,6 +1,7 @@
 export function createTodoItemElement(todoItemData) {
     // destructure todo item data
     const [ title, id, , dueDate, priority, ...rest] = todoItemData;
+    // create html
     const todoItemEl = `
         <div class="todo-item" data-id="${id}">
             <p id="item-title">${title}</p>
