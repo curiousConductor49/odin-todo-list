@@ -102,5 +102,23 @@ const createNewForm = document.querySelector("#create-new");
 // updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields("0eebfca4-3535-491e-b8df-4cce28b2ff9c");
 
 // DOM MANIPULATION
-// const dataDisplay = document.querySelector("#data-display");
+const dataDisplay = document.querySelector("#data-display");
+// add new lists
+// const list = createTodoList(["tabby troubles", "..."]);
+// const list2 = createTodoList(["bengal biscuits", "..."]);
+// addTodoListToStorage(list);
+// addTodoListToStorage(list2);
+// // create new items
+// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "Default Tuxedo"]);
+// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tabby troubles"]);
+// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "bengal biscuits"]);
+// // add new items
+// addTodoItemToStorage(item);
+// addTodoItemToStorage(item2);
+// addTodoItemToStorage(item3);
+// const item4 = createTodoItem(["turkish van", "a swimming cat", "2026-01-15", "medium", "Default Tuxedo"]);
+// addTodoItemToStorage(item4);
+// display select todo list and children
+dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList("Default Tuxedo");
+
 
