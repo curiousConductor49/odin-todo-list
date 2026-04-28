@@ -102,3 +102,5 @@ const createNewForm = document.querySelector("#create-new");
 // updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields("0eebfca4-3535-491e-b8df-4cce28b2ff9c");
 
 // DOM MANIPULATION
+// const dataDisplay = document.querySelector("#data-display");
+
