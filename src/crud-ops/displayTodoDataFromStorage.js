@@ -1,6 +1,6 @@
 export function createTodoItemElement(todoItemData) {
     // destructure todo item data
-    const [ title, id, , dueDate, priority, ...rest] = todoItemData;
+    const { title, id, description, dueDate, priority, ...rest } = todoItemData;
     // create html
     const todoItemEl = `
         <div class="todo-item" data-id="${id}">
@@ -18,7 +18,7 @@ export function createTodoItemElement(todoItemData) {
 
 export function createTodoListElement(todoListData) {
     // destructure todo item data
-    const [ title, id, description ] = todoListData;
+    const { title, id, description } = todoListData;
     // create html
     const todoListEl = `
         <div class="todo-list" data-id="${id}">
@@ -33,6 +33,32 @@ export function createTodoListElement(todoListData) {
     return todoListEl;
 }
 
-export function displaySelectedTodoList() {}
+export function displaySelectedTodoList(selectedTodoList) {
+    try {
+        // get JSON data for selected todo list and corresponding todo item children
+        const appData = JSON.parse(localStorage.getItem("todoAppData"));
+        const todoList = appData["todoLists"].find(list => list.title === selectedTodoList.value);
+        const { title, id, description } = todoList;
+        const todoItemChildren = appData["todoItems"].filter(item => item.parentListTitle === selectedTodoList.value);
+        
+        // create html
+        const completeTodoListEl = `
+        <div class="todo-list" data-id="${id}">
+            <p class="list-title">${title}</p>
+            <p class="list-description">${description}</p>
+            <div class="todo-items">
+                ${todoItemChildren.map(item => createTodoItemElement(item)).join("")}
+            </div>
+            <div class="item-btn-container">
+                <button class="update-item-btn">Update</button>
+                <button class="delete-item-btn">Delete</button>
+            </div>
+        </div>
+    `
+    return completeTodoListEl;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
 export function displayAllTodoItems() {}
 export function displayAllTodoLists() {}
