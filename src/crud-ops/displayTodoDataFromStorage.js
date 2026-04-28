@@ -60,5 +60,20 @@ export function displaySelectedTodoList(selectedTodoList) {
         console.log("Error:", error);
     }
 }
-export function displayAllTodoItems() {}
+
+export function displayAllTodoItems() {
+    try {
+        // get JSON data for all todo items
+        const appData = JSON.parse(localStorage.getItem("todoAppData"));
+        const todoItems = appData["todoItems"];
+        // create html
+        const allTodoItemsHtml = `
+            ${todoItems.map(item => createTodoItemElement(item)).join("")}
+        `
+        return allTodoItemsHtml;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+
 export function displayAllTodoLists() {}
