@@ -119,6 +119,6 @@ const dataDisplay = document.querySelector("#data-display");
 // const item4 = createTodoItem(["turkish van", "a swimming cat", "2026-01-15", "medium", "Default Tuxedo"]);
 // addTodoItemToStorage(item4);
 // display select todo list and children
-dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList("Default Tuxedo");
+// dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
 
 
