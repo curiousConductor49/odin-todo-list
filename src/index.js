@@ -9,6 +9,7 @@ import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 import * as dynamicHTMLPopulator from "./dynamicHtmlPopulation.js";
+import * as todoDataDisplayer from "./crud-ops/displayTodoDataFromStorage.js";
 
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
@@ -99,3 +100,5 @@ const createNewForm = document.querySelector("#create-new");
 // const updateExistingForm = document.querySelector("#update-existing");
 // updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields("c01f15f3-15f5-4f7c-8e63-c4024659e052");
 // updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields("0eebfca4-3535-491e-b8df-4cce28b2ff9c");
+
+// DOM MANIPULATION
