@@ -76,4 +76,17 @@ export function displayAllTodoItems() {
     }
 }
 
-export function displayAllTodoLists() {}
+export function displayAllTodoLists() {
+    try {
+        // get JSON data for all todo lists
+        const appData = JSON.parse(localStorage.getItem("todoAppData"));
+        const todoLists = appData["todoLists"];
+        // create html
+        const allTodoListsHtml = `
+            ${todoLists.map(list => createTodoListElement(list)).join("")}
+        `
+        return allTodoListsHtml;
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
