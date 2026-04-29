@@ -14,6 +14,24 @@ import * as todoDataDisplayer from "./crud-ops/displayTodoDataFromStorage.js";
 // check for and initialize app data upon complete page load
 window.addEventListener("load", initlocalStorageData);
 
+// dashboard
+const appDashboard = document.querySelector("#app-dashboard");
+// container for options to view todo data
+const controlPanel = document.querySelector("#control-panel");
+const newBtnsContainer = document.querySelector(".new-btns-container");
+const newItemBtn = document.querySelector("#new-item-btn");
+const newListBtn = document.querySelector("#new-list-btn");
+const viewOptionsContainer = document.querySelector(".view-options-container");
+const allItemsBtn = document.querySelector("#all-items-btn");
+const allListsBtn = document.querySelector("#all-lists-btn");
+const todoListDropdown = document.querySelector("#todo-list-dropdown");
+// container to display todo data
+const dataDisplay = document.querySelector("#data-display");
+// container for forms to enter todo data
+const createNewTodoDataForm = document.querySelector("#create-new");
+const updateExistingTodoDataForm = document.querySelector("#update-existing");
+
+
 // manual testing
 
 // CREATING NEW TODO ITEMS
@@ -83,7 +101,6 @@ window.addEventListener("load", initlocalStorageData);
 // addTodoListToStorage(list2);
 
 // POPULATING "CREATE NEW" FORM W/ TODO ITEM FIELDS AND TODO LIST FIELDS
-const createNewForm = document.querySelector("#create-new");
 // createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoListFormFields();
 // createNewForm.innerHTML = dynamicHTMLPopulator.populateTodoItemFormFields();
 
@@ -102,7 +119,6 @@ const createNewForm = document.querySelector("#create-new");
 // updateExistingForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields("0eebfca4-3535-491e-b8df-4cce28b2ff9c");
 
 // DOM MANIPULATION
-const dataDisplay = document.querySelector("#data-display");
 // add new lists
 // const list = createTodoList(["tabby troubles", "..."]);
 // const list2 = createTodoList(["bengal biscuits", "..."]);
