@@ -11,9 +11,7 @@ import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 import * as dynamicHTMLPopulator from "./dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./crud-ops/displayTodoDataFromStorage.js";
 
-// check for and initialize app data upon complete page load
-window.addEventListener("load", initlocalStorageData);
-
+// DOM elements
 // dashboard
 const appDashboard = document.querySelector("#app-dashboard");
 // container for options to view todo data
@@ -31,6 +29,14 @@ const dataDisplay = document.querySelector("#data-display");
 const createNewTodoDataForm = document.querySelector("#create-new");
 const updateExistingTodoDataForm = document.querySelector("#update-existing");
 
+// upon complete page load, initialize app data and populate the todo list dropdown based on app data
+window.addEventListener("load", initlocalStorageData);
+window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown());
+
+// viewing options
+allItemsBtn.addEventListener("click", () => dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems());
+allListsBtn.addEventListener("click", () => dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists());
+todoListDropdown.addEventListener("change", (event) => dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target));
 
 // manual testing
 
