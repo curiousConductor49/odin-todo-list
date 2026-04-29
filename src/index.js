@@ -34,7 +34,25 @@ window.addEventListener("load", initlocalStorageData);
 window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown());
 
 // viewing options
-allItemsBtn.addEventListener("click", () => dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems());
+allItemsBtn.addEventListener("click", () => {
+    dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+    // set event listeners for update and delete interactions
+    const todoItemEls = [...document.querySelectorAll(".todo-item")];
+    todoItemEls.forEach(itemEl => {
+        const todoItem = itemEl;
+        // const updateItemBtn = todoItem.querySelector(":scope .update-item-btn");
+        const deleteItemBtn = todoItem.querySelector(":scope .delete-item-btn");
+
+        // updateItemBtn.addEventListener("click", (event) => {});
+        deleteItemBtn.addEventListener("click", (event) => {
+            // delete todo item
+            deleteTodoItemFromStorage(itemEl);
+            // display updated todo items
+            // dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+        });
+    })
+});
+
 allListsBtn.addEventListener("click", () => dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists());
 todoListDropdown.addEventListener("change", (event) => dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target));
 
