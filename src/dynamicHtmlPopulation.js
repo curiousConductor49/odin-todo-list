@@ -141,7 +141,7 @@ export function populateExistingTodoItemFormFields(todoItemId) {
             </div>
 
             <div class="btn-container">
-                <button type="submit" id="submit-form-btn">Add</button>
+                <button type="submit" id="submit-form-btn">Submit</button>
                 <button id="close-form-btn">Close</button>
             </div>
         `
@@ -170,7 +170,7 @@ export function populateExistingTodoListFormFields(todoListId) {
             </div>
             
             <div class="btn-container">
-                <button type="submit" id="submit-form-btn">Add</button>
+                <button type="submit" id="submit-form-btn">Submit</button>
                 <button id="close-form-btn">Close</button>
             </div>
         `
