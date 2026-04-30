@@ -1,4 +1,5 @@
 // imports
+import "./styles.css";
 import initlocalStorageData from "./onPageLoad.js";
 import createTodoItem from "./crud-ops/createTodoItem.js";
 import createTodoList from "./crud-ops/createTodoList.js";
@@ -35,15 +36,24 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 
 // viewing options
 allItemsBtn.addEventListener("click", () => {
+    // show all todo items
     dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
-    // set event listeners for update and delete interactions
+    
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
     todoItemEls.forEach(itemEl => {
         const todoItem = itemEl;
-        // const updateItemBtn = todoItem.querySelector(":scope .update-item-btn");
-        const deleteItemBtn = todoItem.querySelector(":scope .delete-item-btn");
+        const updateItemBtn = todoItem.querySelector(".update-item-btn");
+        const deleteItemBtn = todoItem.querySelector(".delete-item-btn");
 
-        // updateItemBtn.addEventListener("click", (event) => {});
+        // set event listeners for update interaction
+        updateItemBtn.addEventListener("click", (event) => {
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            updateExistingTodoDataForm.classList.toggle("hide");
+            // populate update-existing form
+            updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
+        });
+        // set event listeners for deletion interaction
         deleteItemBtn.addEventListener("click", (event) => {
             // delete todo item and remove from dom
             deleteTodoItemFromStorage(itemEl);
