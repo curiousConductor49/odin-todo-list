@@ -25,8 +25,8 @@ export function createTodoListElement(todoListData) {
             <p class="list-title">${title}</p>
             <p class="list-description">${description}</p>
             <div class="item-btn-container">
-                <button class="update-item-btn">Update</button>
-                <button class="delete-item-btn">Delete</button>
+                <button class="update-list-btn">Update</button>
+                <button class="delete-list-btn">Delete</button>
             </div>
         </div>
     `
