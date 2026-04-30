@@ -42,6 +42,7 @@ allItemsBtn.addEventListener("click", () => {
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
     todoItemEls.forEach(itemEl => {
         const todoItem = itemEl;
+        const todoItemId = itemEl.dataset.id;
         const updateItemBtn = todoItem.querySelector(".update-item-btn");
         const deleteItemBtn = todoItem.querySelector(".delete-item-btn");
 
@@ -50,8 +51,24 @@ allItemsBtn.addEventListener("click", () => {
             // toggle visibility of data-display container and update-existing form
             dataDisplay.classList.toggle("hide");
             updateExistingTodoDataForm.classList.toggle("hide");
+
             // populate update-existing form
-            updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItem.dataset.id);
+            updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
+
+            // handle form submission
+            const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
+            submitFormBtn.addEventListener("click", (event) => {
+                // prevent default form submission behaviour
+                event.preventDefault();
+
+                // capture form data and update localStorage
+                const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                updateTodoItemInStorage(formData, todoItemId);
+
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+            })
         });
         // set event listeners for deletion interaction
         deleteItemBtn.addEventListener("click", (event) => {
