@@ -45,10 +45,9 @@ allItemsBtn.addEventListener("click", () => {
 
         // updateItemBtn.addEventListener("click", (event) => {});
         deleteItemBtn.addEventListener("click", (event) => {
-            // delete todo item
+            // delete todo item and remove from dom
             deleteTodoItemFromStorage(itemEl);
-            // display updated todo items
-            // dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+            itemEl.remove();
         });
     })
 });
@@ -85,7 +84,7 @@ todoListDropdown.addEventListener("change", (event) => dataDisplay.innerHTML = t
 // const list2 = createTodoList(["bengal biscuits", "..."]);
 // addTodoListToStorage(list);
 // addTodoListToStorage(list2);
-// // add new items
+// // // add new items
 // const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "tabby troubles"]);
 // const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tabby troubles"]);
 // const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "bengal biscuits"]);
