@@ -92,7 +92,7 @@ export function populateExistingTodoItemFormFields(todoItemId) {
 
         // create the option elements for parent lists and set the option for the current todo item's parent todo list as selected
         const parentListOptionsHTML = todoLists.map(list => {
-            if (list.title === currentTodoItem.priority) {
+            if (list.id === currentTodoItem.parentListId) {
                 return `<option value="${list.title}" selected>${list.title}</option>`
             } else {
                 return `<option value="${list.title}">${list.title}</option>`
