@@ -69,6 +69,14 @@ allItemsBtn.addEventListener("click", () => {
                 dataDisplay.classList.toggle("hide");
                 updateExistingTodoDataForm.classList.toggle("hide");
             })
+
+            // handle closing form
+            const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
+            closeFormBtn.addEventListener("click", () => {
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+            })
         });
         // set event listeners for deletion interaction
         deleteItemBtn.addEventListener("click", (event) => {
