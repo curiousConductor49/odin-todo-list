@@ -66,27 +66,27 @@ allListsBtn.addEventListener("click", () => {
     // show all todo lists
     dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists();
 
-    // const todoListEls = [...document.querySelectorAll(".todo-list")];
-    // todoListEls.forEach(listEl => {
-    //     const todoList = listEl;
-    //     const updateListBtn = todoList.querySelector(".update-list-btn");
-    //     const deleteListBtn = todoList.querySelector(".delete-list-btn");
+    const todoListEls = [...document.querySelectorAll(".todo-list")];
+    todoListEls.forEach(listEl => {
+        const todoList = listEl;
+        const updateListBtn = todoList.querySelector(".update-list-btn");
+        const deleteListBtn = todoList.querySelector(".delete-list-btn");
 
-    //     // set event listeners for update interaction
-    //     updateListBtn.addEventListener("click", (event) => {
-    //         // toggle visibility of data-display container and update-existing form
-    //         dataDisplay.classList.toggle("hide");
-    //         updateExistingTodoDataForm.classList.toggle("hide");
-    //         // populate update-existing form
-    //         updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
-    //     });
-    //     // set event listeners for deletion interaction
-    //     deleteListBtn.addEventListener("click", (event) => {
-    //         // delete todo item and remove from dom
-    //         deleteTodoListFromStorage(listEl);
-    //         listEl.remove();
-    //     });
-    // })
+        // set event listeners for update interaction
+        updateListBtn.addEventListener("click", (event) => {
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            updateExistingTodoDataForm.classList.toggle("hide");
+            // populate update-existing form
+            updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
+        });
+        // set event listeners for deletion interaction
+        deleteListBtn.addEventListener("click", (event) => {
+            // delete todo item and remove from dom
+            deleteTodoListFromStorage(listEl);
+            listEl.remove();
+        });
+    })
 });
 todoListDropdown.addEventListener("change", (event) => dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target));
 
