@@ -46,6 +46,17 @@ export function updateTodoItemElement(todoItemEl, todoItemData) {
     itemPriority.textContent = priority;
 }
 
+export function updateTodoListElement(todoListEl, todoListData) {
+    // capture children of todo item element
+    const listTitle = todoListEl.querySelector(".list-title");
+    const listDescription = todoListEl.querySelector(".list-description");
+    // destructure properties of todo item data
+    const { title, id,description } = todoListData;
+    // update text content of children
+    listTitle.textContent = title;
+    listDescription.textContent = description;
+}
+
 export function displaySelectedTodoList(selectedTodoList) {
     try {
         // get JSON data for selected todo list and corresponding todo item children

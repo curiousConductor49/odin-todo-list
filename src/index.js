@@ -72,7 +72,7 @@ allItemsBtn.addEventListener("click", () => {
                 try {
                     const todoItemData = JSON.parse(localStorage.getItem("todoAppData"))["todoItems"].find(item => item.id === todoItemId);
                     todoDataDisplayer.updateTodoItemElement(itemEl, todoItemData);
-                } catch {
+                } catch (error) {
                     console.log("Error:", error);
                 }
             })
@@ -126,6 +126,14 @@ allListsBtn.addEventListener("click", () => {
                 // toggle visibility of data-display container and update-existing form
                 dataDisplay.classList.toggle("hide");
                 updateExistingTodoDataForm.classList.toggle("hide");
+
+                // update text content of todo list element html
+                try {
+                    const todoListData = JSON.parse(localStorage.getItem("todoAppData"))["todoLists"].find(list => list.id === todoListId);
+                    todoDataDisplayer.updateTodoListElement(todoList, todoListData);
+                } catch (error) {
+                    console.log("Error:", error);
+                }
             })
 
             // handle closing form
