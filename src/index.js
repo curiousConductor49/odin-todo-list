@@ -134,6 +134,9 @@ allListsBtn.addEventListener("click", () => {
                 } catch (error) {
                     console.log("Error:", error);
                 }
+
+                // update options for specific todo list selection
+                todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
             })
 
             // handle closing form
@@ -149,10 +152,16 @@ allListsBtn.addEventListener("click", () => {
             // delete todo item and remove from dom
             deleteTodoListFromStorage(listEl);
             listEl.remove();
+            // update options for specific todo list selection
+            todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
         });
     })
 });
-todoListDropdown.addEventListener("change", (event) => dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target));
+
+todoListDropdown.addEventListener("change", (event) => {
+    // show list and todo items within list
+    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
+});
 
 // manual testing
 
