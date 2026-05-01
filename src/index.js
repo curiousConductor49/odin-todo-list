@@ -94,6 +94,7 @@ allListsBtn.addEventListener("click", () => {
     const todoListEls = [...document.querySelectorAll(".todo-list")];
     todoListEls.forEach(listEl => {
         const todoList = listEl;
+        const todoListId = listEl.dataset.id;
         const updateListBtn = todoList.querySelector(".update-list-btn");
         const deleteListBtn = todoList.querySelector(".delete-list-btn");
 
@@ -104,6 +105,29 @@ allListsBtn.addEventListener("click", () => {
             updateExistingTodoDataForm.classList.toggle("hide");
             // populate update-existing form
             updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
+
+            // handle form submission
+            const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
+            submitFormBtn.addEventListener("click", (event) => {
+                // prevent default form submission behaviour
+                event.preventDefault();
+
+                // capture form data and update localStorage
+                const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                updateTodoListInStorage(formData, todoListId);
+
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+            })
+
+            // handle closing form
+            const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
+            closeFormBtn.addEventListener("click", () => {
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+            })
         });
         // set event listeners for deletion interaction
         deleteListBtn.addEventListener("click", (event) => {
