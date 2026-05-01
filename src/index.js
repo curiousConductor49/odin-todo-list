@@ -68,6 +68,13 @@ allItemsBtn.addEventListener("click", () => {
                 // toggle visibility of data-display container and update-existing form
                 dataDisplay.classList.toggle("hide");
                 updateExistingTodoDataForm.classList.toggle("hide");
+                // update text content of todo item element html
+                try {
+                    const todoItemData = JSON.parse(localStorage.getItem("todoAppData"))["todoItems"].find(item => item.id === todoItemId);
+                    todoDataDisplayer.updateTodoItemElement(itemEl, todoItemData);
+                } catch {
+                    console.log("Error:", error);
+                }
             })
 
             // handle closing form

@@ -33,6 +33,19 @@ export function createTodoListElement(todoListData) {
     return todoListEl;
 }
 
+export function updateTodoItemElement(todoItemEl, todoItemData) {
+    // capture children of todo item element
+    const itemTitle = todoItemEl.querySelector(".item-title");
+    const itemDueDate = todoItemEl.querySelector(".item-due-date");
+    const itemPriority = todoItemEl.querySelector(".item-priority");
+    // destructure properties of todo item data
+    const { title, id, description, dueDate, priority, ...rest } = todoItemData;
+    // update text content of children
+    itemTitle.textContent = title;
+    itemDueDate.textContent = new Date(dueDate).toDateString();
+    itemPriority.textContent = priority;
+}
+
 export function displaySelectedTodoList(selectedTodoList) {
     try {
         // get JSON data for selected todo list and corresponding todo item children
