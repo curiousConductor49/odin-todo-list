@@ -73,9 +73,9 @@ export function displaySelectedTodoList(selectedTodoList) {
             <div class="todo-items">
                 ${todoItemChildren.map(item => createTodoItemElement(item)).join("")}
             </div>
-            <div class="item-btn-container">
-                <button class="update-item-btn">Update</button>
-                <button class="delete-item-btn">Delete</button>
+            <div class="btn-container">
+                <button class="update-list-btn">Update</button>
+                <button class="delete-list-btn">Delete</button>
             </div>
         </div>
     `
