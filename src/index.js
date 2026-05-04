@@ -39,6 +39,7 @@ allItemsBtn.addEventListener("click", () => {
     // show all todo items
     dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
     
+    // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
     todoItemEls.forEach(itemEl => {
         const todoItem = itemEl;
@@ -98,6 +99,7 @@ allListsBtn.addEventListener("click", () => {
     // show all todo lists
     dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists();
 
+    // individual todo list logic (updating, deleting)
     const todoListEls = [...document.querySelectorAll(".todo-list")];
     todoListEls.forEach(listEl => {
         const todoList = listEl;
@@ -162,6 +164,7 @@ todoListDropdown.addEventListener("change", (event) => {
     // show list and todo items within list
     dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
 
+    // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
     todoItemEls.forEach(itemEl => {
         const todoItem = itemEl;
