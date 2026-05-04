@@ -162,7 +162,7 @@ allListsBtn.addEventListener("click", () => {
 
 todoListDropdown.addEventListener("change", (event) => {
     // show list and todo items within list
-    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
+    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);;
 
     // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
@@ -218,6 +218,64 @@ todoListDropdown.addEventListener("change", (event) => {
             itemEl.remove();
         });
     })
+
+    // selected todo list logic (updating, deleting)
+    const todoList = dataDisplay.querySelector(".todo-list");
+    const todoListId = todoList.dataset.id;
+    const updateListBtn = dataDisplay.querySelector(".update-list-btn");
+    const deleteListBtn = dataDisplay.querySelector(".delete-list-btn");
+
+    // set event listeners for update interaction
+    updateListBtn.addEventListener("click", (event) => {
+        // toggle visibility of data-display container and update-existing form
+        dataDisplay.classList.toggle("hide");
+        updateExistingTodoDataForm.classList.toggle("hide");
+        // populate update-existing form
+        updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
+
+        // handle form submission
+        const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
+        submitFormBtn.addEventListener("click", (event) => {
+            // prevent default form submission behaviour
+            event.preventDefault();
+
+            // capture form data and update localStorage
+            const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+            updateTodoListInStorage(formData, todoListId);
+
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            updateExistingTodoDataForm.classList.toggle("hide");
+
+            // update text content of todo list element html
+            try {
+                const todoListData = JSON.parse(localStorage.getItem("todoAppData"))["todoLists"].find(list => list.id === todoListId);
+                todoDataDisplayer.updateTodoListElement(todoList, todoListData);
+            } catch (error) {
+                console.log("Error:", error);
+            }
+
+            // update options for specific todo list selection
+            todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+        })
+
+        // handle closing form
+        const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
+        closeFormBtn.addEventListener("click", () => {
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            updateExistingTodoDataForm.classList.toggle("hide");
+        })
+    });
+    
+    // set event listener for deletion interaction
+    deleteListBtn.addEventListener("click", (event) => {
+        // delete todo item and remove from dom
+        deleteTodoListFromStorage(todoList);
+        todoList.remove();
+        // update options for specific todo list selection
+        todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+    });
 });
 
 // manual testing
@@ -250,9 +308,9 @@ todoListDropdown.addEventListener("change", (event) => {
 // addTodoListToStorage(list);
 // addTodoListToStorage(list2);
 // // // add new items
-// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "tuxedo troubles"]);
-// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tuxedo troubles"]);
-// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "abyssinian adventures"]);
+// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "tabby troubles"]);
+// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tabby troubles"]);
+// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "bengal biscuits"]);
 // addTodoItemToStorage(item);
 // addTodoItemToStorage(item2);
 // addTodoItemToStorage(item3);
