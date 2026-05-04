@@ -15,11 +15,12 @@ import * as todoDataDisplayer from "./crud-ops/displayTodoDataFromStorage.js";
 // DOM elements
 // dashboard
 const appDashboard = document.querySelector("#app-dashboard");
+// container for options to create todo data
+const newItemBtn = document.querySelector("#new-item-btn");
+const newListBtn = document.querySelector("#new-list-btn");
 // container for options to view todo data
 const controlPanel = document.querySelector("#control-panel");
 const newBtnsContainer = document.querySelector(".new-btns-container");
-const newItemBtn = document.querySelector("#new-item-btn");
-const newListBtn = document.querySelector("#new-list-btn");
 const viewOptionsContainer = document.querySelector(".view-options-container");
 const allItemsBtn = document.querySelector("#all-items-btn");
 const allListsBtn = document.querySelector("#all-lists-btn");
@@ -34,7 +35,50 @@ const updateExistingTodoDataForm = document.querySelector("#update-existing");
 window.addEventListener("load", initlocalStorageData);
 window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown());
 
-// viewing options
+// creating new todo data
+newItemBtn.addEventListener("click", () => {});
+newListBtn.addEventListener("click", () => {
+    // toggle visibility of data-display container and create-new form
+    dataDisplay.classList.toggle("hide");
+    createNewTodoDataForm.classList.toggle("hide");
+    // populate create-new form
+    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
+    // handle form submission
+    const submitFormBtn = createNewTodoDataForm.querySelector("#submit-form-btn");
+    submitFormBtn.addEventListener("click", (event) => {
+        // prevent default form submission behaviour
+        event.preventDefault();
+        // prevent duplicate todo list names
+        try {
+            const appData = JSON.parse(localStorage.getItem("todoAppData"));
+            const todoLists = appData["todoLists"];
+            const inputTodoListTitle = document.querySelector("#list-title");
+            
+            if (todoLists.find(list => list.title === inputTodoListTitle.value)) {
+                const titleRegex = new RegExp(`${inputTodoListTitle.value}`);
+                const copyNum = todoLists.filter(list => titleRegex.test(list.title)).length;
+                
+                inputTodoListTitle.value = `${inputTodoListTitle.value} (${copyNum > 1 ? copyNum : 1})`;
+            }
+        } catch (error) {
+            console.log("Error:", error);
+        }
+
+        // capture form data and add to localStorage
+        const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+        const todoListData = createTodoList(formData);
+        addTodoListToStorage(todoListData);
+
+        // toggle visibility of data-display container and update-existing form
+        dataDisplay.classList.toggle("hide");
+        createNewTodoDataForm.classList.toggle("hide");
+
+        // update options for specific todo list selection
+        todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+    })  
+});
+
+// viewing todo data
 allItemsBtn.addEventListener("click", () => {
     // show all todo items
     dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
