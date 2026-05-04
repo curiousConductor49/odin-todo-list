@@ -4,7 +4,8 @@ export function populateTodoListDropdown() {
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
         const todoLists = appData["todoLists"];
         // create option elements
-        const optionsHTML = todoLists.map(list => `<option value="${list.title}">${list.title}</option>`).join("");
+        const blankOptionHTML = [`<option value="" disabled selected>Select a list</option>`]
+        const optionsHTML = blankOptionHTML.concat(todoLists.map(list => `<option value="${list.title}">${list.title}</option>`).join(""));
         return optionsHTML;
     } catch (error) {
         console.log("Error:", error);
