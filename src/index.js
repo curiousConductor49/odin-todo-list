@@ -161,6 +161,60 @@ allListsBtn.addEventListener("click", () => {
 todoListDropdown.addEventListener("change", (event) => {
     // show list and todo items within list
     dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
+
+    const todoItemEls = [...document.querySelectorAll(".todo-item")];
+    todoItemEls.forEach(itemEl => {
+        const todoItem = itemEl;
+        const todoItemId = itemEl.dataset.id;
+        const updateItemBtn = todoItem.querySelector(".update-item-btn");
+        const deleteItemBtn = todoItem.querySelector(".delete-item-btn");
+
+        // set event listeners for update interaction
+        updateItemBtn.addEventListener("click", (event) => {
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            updateExistingTodoDataForm.classList.toggle("hide");
+
+            // populate update-existing form
+            updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
+
+            // handle form submission
+            const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
+            submitFormBtn.addEventListener("click", (event) => {
+                // prevent default form submission behaviour
+                event.preventDefault();
+
+                // capture form data and update localStorage
+                const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                updateTodoItemInStorage(formData, todoItemId);
+
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+                // update text content of todo item element html
+                try {
+                    const todoItemData = JSON.parse(localStorage.getItem("todoAppData"))["todoItems"].find(item => item.id === todoItemId);
+                    todoDataDisplayer.updateTodoItemElement(itemEl, todoItemData);
+                } catch (error) {
+                    console.log("Error:", error);
+                }
+            })
+
+            // handle closing form
+            const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
+            closeFormBtn.addEventListener("click", () => {
+                // toggle visibility of data-display container and update-existing form
+                dataDisplay.classList.toggle("hide");
+                updateExistingTodoDataForm.classList.toggle("hide");
+            })
+        });
+        // set event listeners for deletion interaction
+        deleteItemBtn.addEventListener("click", (event) => {
+            // delete todo item and remove from dom
+            deleteTodoItemFromStorage(itemEl);
+            itemEl.remove();
+        });
+    })
 });
 
 // manual testing
@@ -193,9 +247,9 @@ todoListDropdown.addEventListener("change", (event) => {
 // addTodoListToStorage(list);
 // addTodoListToStorage(list2);
 // // // add new items
-// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "tabby troubles"]);
-// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tabby troubles"]);
-// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "bengal biscuits"]);
+// const item = createTodoItem(["tortoiseshell", "a sleeping cat", "2026-04-17", "high", "tuxedo troubles"]);
+// const item2 = createTodoItem(["calico", "a frowning cat", "2026-08-21", "medium", "tuxedo troubles"]);
+// const item3 = createTodoItem(["bengal", "a meowing cat", "2026-09-14", "medium", "abyssinian adventures"]);
 // addTodoItemToStorage(item);
 // addTodoItemToStorage(item2);
 // addTodoItemToStorage(item3);
