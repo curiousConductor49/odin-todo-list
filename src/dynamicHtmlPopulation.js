@@ -49,7 +49,7 @@ export function populateNewTodoItemFormFields() {
 
             <div class="btn-container">
                 <button type="submit" id="submit-form-btn">Add</button>
-                <button id="close-form-btn">Close</button>
+                <button type="button" id="close-form-btn">Close</button>
             </div>
         `
         return formFieldsHTML;
@@ -74,7 +74,7 @@ export function populateNewTodoListFormFields() {
             
             <div class="btn-container">
                 <button type="submit" id="submit-form-btn">Add</button>
-                <button id="close-form-btn">Close</button>
+                <button type="button" id="close-form-btn">Close</button>
             </div>
         `
         return formFieldsHTML;
