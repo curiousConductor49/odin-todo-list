@@ -212,7 +212,7 @@ allListsBtn.addEventListener("click", () => {
 
 todoListDropdown.addEventListener("change", (event) => {
     // show list and todo items within list
-    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);;
+    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
 
     // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
