@@ -48,33 +48,39 @@ newListBtn.addEventListener("click", () => {
     submitFormBtn.addEventListener("click", (event) => {
         // prevent default form submission behaviour
         event.preventDefault();
-        // prevent duplicate todo list names
+        
         try {
+            // handle duplicate todo list names
             const appData = JSON.parse(localStorage.getItem("todoAppData"));
             const todoLists = appData["todoLists"];
             const inputTodoListTitle = document.querySelector("#list-title");
             
             if (todoLists.find(list => list.title === inputTodoListTitle.value)) {
-                const titleRegex = new RegExp(`${inputTodoListTitle.value}`);
-                const copyNum = todoLists.filter(list => titleRegex.test(list.title)).length;
-                
-                inputTodoListTitle.value = `${inputTodoListTitle.value} (${copyNum > 1 ? copyNum : 1})`;
+                // append a number to the todo list title to indicate its duplication (allows 10 duplicate titles)
+                const duplicateTitleRegex = new RegExp(`^${inputTodoListTitle.value} \\([0-9]\\)$`);
+                const copyNum = todoLists.filter(list => duplicateTitleRegex.test(list.title)).length;
+
+                if (copyNum <= 10) {
+                    alert("No more than 10 copies of a todo list, please!");
+                } else {
+                    inputTodoListTitle.value = `${inputTodoListTitle.value} (${copyNum === 0 ? 1 : copyNum + 1})`;
+
+                    // capture form data and add to localStorage
+                    const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                    const todoListData = createTodoList(formData);
+                    addTodoListToStorage(todoListData);
+
+                    // toggle visibility of data-display container and update-existing form
+                    dataDisplay.classList.toggle("hide");
+                    createNewTodoDataForm.classList.toggle("hide");
+
+                    // update options for specific todo list selection
+                    todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+                }
             }
         } catch (error) {
             console.log("Error:", error);
         }
-
-        // capture form data and add to localStorage
-        const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
-        const todoListData = createTodoList(formData);
-        addTodoListToStorage(todoListData);
-
-        // toggle visibility of data-display container and update-existing form
-        dataDisplay.classList.toggle("hide");
-        createNewTodoDataForm.classList.toggle("hide");
-
-        // update options for specific todo list selection
-        todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
     })  
 });
 
