@@ -63,7 +63,7 @@ export function displaySelectedTodoList(selectedTodoList) {
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
         const todoList = appData["todoLists"].find(list => list.title === selectedTodoList.value);
         const { title, id, description } = todoList;
-        const todoItemChildren = appData["todoItems"].filter(item => item.parentListTitle === selectedTodoList.value);
+        const todoItemChildren = appData["todoItems"].filter(item => item.parentListId === id);
         
         // create html
         const completeTodoListEl = `
