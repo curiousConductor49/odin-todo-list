@@ -56,7 +56,7 @@ newItemBtn.addEventListener("click", () => {
             
             if (todoItems.find(item => item.title === inputTodoItemTitle.value)) {
                 // append a number to the todo list title to indicate its duplication (allows 10 duplicate titles)
-                const duplicateTitleRegex = new RegExp(`^${todoItems.value} \\([0-9]\\)$`);
+                const duplicateTitleRegex = new RegExp(`^${inputTodoItemTitle.value} \\([0-9]\\)$`);
                 const duplicateNum = todoItems.filter(item => duplicateTitleRegex.test(item.title)).length;
 
                 if (duplicateNum === 10) {
