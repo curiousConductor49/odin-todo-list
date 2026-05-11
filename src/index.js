@@ -36,7 +36,60 @@ window.addEventListener("load", initlocalStorageData);
 window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown());
 
 // creating new todo data
-newItemBtn.addEventListener("click", () => {});
+newItemBtn.addEventListener("click", () => {
+    // toggle visibility of data-display container and create-new form
+    dataDisplay.classList.toggle("hide");
+    createNewTodoDataForm.classList.toggle("hide");
+    // populate create-new form
+    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
+    // handle form submission
+    const submitFormBtn = createNewTodoDataForm.querySelector("#submit-form-btn");
+    submitFormBtn.addEventListener("click", (event) => {
+        // prevent default form submission behaviour
+        event.preventDefault();
+        
+        try {
+            // handle duplicate todo item names
+            const appData = JSON.parse(localStorage.getItem("todoAppData"));
+            const todoItems = appData["todoItems"];
+            const inputTodoItemTitle = document.querySelector("#item-title");
+            
+            if (todoItems.find(item => item.title === inputTodoItemTitle.value)) {
+                // append a number to the todo list title to indicate its duplication (allows 10 duplicate titles)
+                const duplicateTitleRegex = new RegExp(`^${todoItems.value} \\([0-9]\\)$`);
+                const duplicateNum = todoItems.filter(item => duplicateTitleRegex.test(item.title)).length;
+
+                if (duplicateNum === 10) {
+                    alert("No more than 10 copies of a todo list, please!");
+                    return;
+                } else {
+                    inputTodoItemTitle.value = `${inputTodoItemTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
+                }
+            }
+            // capture form data and add to localStorage
+            const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+            const todoItemData = createTodoItem(formData);
+            addTodoItemToStorage(todoItemData);
+
+            // toggle visibility of data-display container and update-existing form
+            dataDisplay.classList.toggle("hide");
+            createNewTodoDataForm.classList.toggle("hide");
+
+            // update and switch to contents of data-display container
+            dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    })
+    // handle closing form
+    const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
+    closeFormBtn.addEventListener("click", () => {
+        // toggle visibility of data-display container and create-new form
+        dataDisplay.classList.toggle("hide");
+        createNewTodoDataForm.classList.toggle("hide");
+    })
+});
+
 newListBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
     dataDisplay.classList.toggle("hide");
