@@ -49,33 +49,32 @@ newItemBtn.addEventListener("click", () => {
         event.preventDefault();
         
         try {
+            // capture form data
+            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+            // check for input validity
+            const invalidInputs = formInputs.filter(input => input.value === "");
+            if (invalidInputs.length > 0) {
+                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                return;
+            }
+
             // handle duplicate todo item names
             const appData = JSON.parse(localStorage.getItem("todoAppData"));
             const todoItems = appData["todoItems"];
             const inputTodoItemTitle = document.querySelector("#item-title");
             
             if (todoItems.find(item => item.title === inputTodoItemTitle.value)) {
-                // append a number to the todo list title to indicate its duplication (allows 10 duplicate titles)
+                // check the number of duplicates
                 const duplicateTitleRegex = new RegExp(`^${inputTodoItemTitle.value} \\([0-9]\\)$`);
                 const duplicateNum = todoItems.filter(item => duplicateTitleRegex.test(item.title)).length;
-
+                // append a number to the todo item title to indicate a duplication (allows 10 duplicate titles)
                 if (duplicateNum === 10) {
                     alert("No more than 10 copies of a todo list, please!");
                     return;
                 } else {
                     inputTodoItemTitle.value = `${inputTodoItemTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
                 }
-            }
-
-            // capture form data
-            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-            // check for input validity
-            const invalidInputs = formInputs.filter(input => input.value === "");
-            
-            if (invalidInputs.length > 0) {
-                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-                return;
             }
 
             // add to localStorage
@@ -115,32 +114,32 @@ newListBtn.addEventListener("click", () => {
         event.preventDefault();
         
         try {
+            // capture form data
+            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+            // check for input validity
+            const invalidInputs = formInputs.filter(input => input.value === "");
+            if (invalidInputs.length > 0) {
+                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                return;
+            }
+
             // handle duplicate todo list names
             const appData = JSON.parse(localStorage.getItem("todoAppData"));
             const todoLists = appData["todoLists"];
             const inputTodoListTitle = document.querySelector("#list-title");
             
             if (todoLists.find(list => list.title === inputTodoListTitle.value)) {
-                // append a number to the todo list title to indicate its duplication (allows 10 duplicate titles)
+                // check number of duplicates
                 const duplicateTitleRegex = new RegExp(`^${inputTodoListTitle.value} \\([0-9]\\)$`);
                 const duplicateNum = todoLists.filter(list => duplicateTitleRegex.test(list.title)).length;
-
+                // append a number to the todo list title to indicate a duplication (allows 10 duplicate titles)
                 if (duplicateNum === 10) {
                     alert("No more than 10 copies of a todo list, please!");
                     return;
                 } else {
                     inputTodoListTitle.value = `${inputTodoListTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
                 }
-            }
-            // capture form data
-            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-            // check for input validity
-            const invalidInputs = formInputs.filter(input => input.value === "");
-            
-            if (invalidInputs.length > 0) {
-                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-                return;
             }
 
             // add to localStorage
