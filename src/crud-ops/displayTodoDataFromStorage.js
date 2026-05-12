@@ -2,10 +2,12 @@ export function createTodoItemElement(todoItemData) {
     // destructure todo item data
     const { title, id, description, dueDate, priority, ...rest } = todoItemData;
     // create html
+    const arr = dueDate.split("-");
+    const formattedDueDate = new Date(...arr.map(int => arr.indexOf(int) === 1 ? parseInt(int) - 1 : parseInt(int))).toDateString();
     const todoItemEl = `
         <div class="todo-item" data-id="${id}">
             <p class="item-title">${title}</p>
-            <time class="item-due-date" datetime="${dueDate}">${new Date(dueDate).toDateString()}</time>
+            <time class="item-due-date" datetime="${dueDate}">${formattedDueDate}</time>
             <p class="item-priority">${priority}</p>
             <div class="item-btn-container">
                 <button class="update-item-btn">Update</button>
@@ -41,8 +43,10 @@ export function updateTodoItemElement(todoItemEl, todoItemData) {
     // destructure properties of todo item data
     const { title, id, description, dueDate, priority, ...rest } = todoItemData;
     // update text content of children
+    const arr = dueDate.split("-");
+    const formattedDueDate = new Date(...arr.map(int => arr.indexOf(int) === 1 ? parseInt(int) - 1 : parseInt(int))).toDateString();
     itemTitle.textContent = title;
-    itemDueDate.textContent = new Date(dueDate).toDateString();
+    itemDueDate.textContent = formattedDueDate;
     itemPriority.textContent = priority;
 }
 
