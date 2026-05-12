@@ -66,8 +66,20 @@ newItemBtn.addEventListener("click", () => {
                     inputTodoItemTitle.value = `${inputTodoItemTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
                 }
             }
-            // capture form data and add to localStorage
-            const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+
+            // capture form data
+            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+            // check for input validity
+            const invalidInputs = formInputs.filter(input => input.value === "");
+            
+            if (invalidInputs.length > 0) {
+                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                return;
+            }
+
+            // add to localStorage
+            const formData = formInputs.map(el => el.value);
             const todoItemData = createTodoItem(formData);
             addTodoItemToStorage(todoItemData);
 
@@ -120,8 +132,19 @@ newListBtn.addEventListener("click", () => {
                     inputTodoListTitle.value = `${inputTodoListTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
                 }
             }
-            // capture form data and add to localStorage
-            const formData = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+            // capture form data
+            const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+            // check for input validity
+            const invalidInputs = formInputs.filter(input => input.value === "");
+            
+            if (invalidInputs.length > 0) {
+                alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                return;
+            }
+
+            // add to localStorage
+            const formData = formInputs.map(el => el.value);
             const todoListData = createTodoList(formData);
             addTodoListToStorage(todoListData);
 
@@ -175,13 +198,25 @@ allItemsBtn.addEventListener("click", () => {
                 // prevent default form submission behaviour
                 event.preventDefault();
 
-                // capture form data and update localStorage
-                const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                // capture form data
+                const formInputs = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+                // check for input validity
+                const invalidInputs = formInputs.filter(input => input.value === "");
+                
+                if (invalidInputs.length > 0) {
+                    alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                    return;
+                }
+
+                // update localStorage
+                const formData = formInputs.map(el => el.value);
                 updateTodoItemInStorage(formData, todoItemId);
 
                 // toggle visibility of data-display container and update-existing form
                 dataDisplay.classList.toggle("hide");
                 updateExistingTodoDataForm.classList.toggle("hide");
+
                 // update text content of todo item element html
                 try {
                     const todoItemData = JSON.parse(localStorage.getItem("todoAppData"))["todoItems"].find(item => item.id === todoItemId);
@@ -234,8 +269,19 @@ allListsBtn.addEventListener("click", () => {
                 // prevent default form submission behaviour
                 event.preventDefault();
 
-                // capture form data and update localStorage
-                const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
+                // capture form data
+                const formInputs = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
+
+                // check for input validity
+                const invalidInputs = formInputs.filter(input => input.value === "");
+                
+                if (invalidInputs.length > 0) {
+                    alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
+                    return;
+                }
+
+                // update localStorage
+                const formData = formInputs.map(el => el.value);
                 updateTodoListInStorage(formData, todoListId);
 
                 // toggle visibility of data-display container and update-existing form
