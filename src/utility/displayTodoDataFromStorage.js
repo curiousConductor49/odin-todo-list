@@ -61,7 +61,7 @@ export function updateTodoListElement(todoListEl, todoListData) {
     listDescription.textContent = description;
 }
 
-export function displaySelectedTodoList(selectedTodoList) {
+export function createSelectedTodoListElement(selectedTodoList) {
     try {
         // get JSON data for selected todo list and corresponding todo item children
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
@@ -89,7 +89,7 @@ export function displaySelectedTodoList(selectedTodoList) {
     }
 }
 
-export function displayAllTodoItems() {
+export function createAllTodoItemElements() {
     try {
         // get JSON data for all todo items
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
@@ -104,7 +104,7 @@ export function displayAllTodoItems() {
     }
 }
 
-export function displayAllTodoLists() {
+export function createAllTodoListElements() {
     try {
         // get JSON data for all todo lists
         const appData = JSON.parse(localStorage.getItem("todoAppData"));

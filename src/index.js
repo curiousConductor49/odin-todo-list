@@ -87,7 +87,7 @@ newItemBtn.addEventListener("click", () => {
             createNewTodoDataForm.classList.toggle("hide");
 
             // update and switch to contents of data-display container
-            dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
         } catch (error) {
             console.log("Error:", error);
         }
@@ -155,7 +155,7 @@ newListBtn.addEventListener("click", () => {
             todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
 
             // update and switch to contents of data-display container
-            dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists();
+            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
         } catch (error) {
             console.log("Error:", error);
         }
@@ -172,7 +172,7 @@ newListBtn.addEventListener("click", () => {
 // viewing todo data
 allItemsBtn.addEventListener("click", () => {
     // show all todo items
-    dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoItems();
+    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
     
     // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
@@ -244,7 +244,7 @@ allItemsBtn.addEventListener("click", () => {
 
 allListsBtn.addEventListener("click", () => {
     // show all todo lists
-    dataDisplay.innerHTML = todoDataDisplayer.displayAllTodoLists();
+    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
 
     // individual todo list logic (updating, deleting)
     const todoListEls = [...document.querySelectorAll(".todo-list")];
@@ -320,7 +320,7 @@ allListsBtn.addEventListener("click", () => {
 
 todoListDropdown.addEventListener("change", (event) => {
     // show list and todo items within list
-    dataDisplay.innerHTML = todoDataDisplayer.displaySelectedTodoList(event.target);
+    dataDisplay.innerHTML = todoDataDisplayer.createSelectedTodoListElement(event.target);
 
     // individual todo item logic (updating, deleting)
     const todoItemEls = [...document.querySelectorAll(".todo-item")];
