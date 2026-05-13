@@ -10,7 +10,7 @@ import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 import * as dynamicHTMLPopulator from "./dynamicHtmlPopulation.js";
-import * as todoDataDisplayer from "./form-logic/displayTodoDataFromStorage.js";
+import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
 
 // DOM elements
 // dashboard
