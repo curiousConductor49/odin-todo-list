@@ -9,7 +9,7 @@ import deleteTodoItemFromStorage from "./crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "./crud-ops/deleteTodoListFromStorage.js";
 import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
-import * as dynamicHTMLPopulator from "./dynamicHtmlPopulation.js";
+import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
 
 // DOM elements
