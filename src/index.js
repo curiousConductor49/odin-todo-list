@@ -11,6 +11,7 @@ import updateTodoItemInStorage from "./crud-ops/updateTodoItemInStorage.js";
 import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
+import toggleDisplays from "./utility/toggleDisplays.js";
 
 // DOM elements
 // dashboard
@@ -38,8 +39,9 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
-    dataDisplay.classList.toggle("hide");
-    createNewTodoDataForm.classList.toggle("hide");
+    toggleDisplays(dataDisplay, createNewTodoDataForm);
+    // dataDisplay.classList.toggle("hide");
+    // createNewTodoDataForm.classList.toggle("hide");
     // populate create-new form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
     // handle form submission
@@ -83,8 +85,7 @@ newItemBtn.addEventListener("click", () => {
             addTodoItemToStorage(todoItemData);
 
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            createNewTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, createNewTodoDataForm);
 
             // update and switch to contents of data-display container
             dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
@@ -96,15 +97,13 @@ newItemBtn.addEventListener("click", () => {
     const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
     closeFormBtn.addEventListener("click", () => {
         // toggle visibility of data-display container and create-new form
-        dataDisplay.classList.toggle("hide");
-        createNewTodoDataForm.classList.toggle("hide");
+        toggleDisplays(dataDisplay, createNewTodoDataForm);
     })
 });
 
 newListBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
-    dataDisplay.classList.toggle("hide");
-    createNewTodoDataForm.classList.toggle("hide");
+    toggleDisplays(dataDisplay, createNewTodoDataForm);
     // populate create-new form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
     // handle form submission
@@ -148,8 +147,7 @@ newListBtn.addEventListener("click", () => {
             addTodoListToStorage(todoListData);
 
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            createNewTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, createNewTodoDataForm);
 
             // update options for specific todo list selection
             todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
@@ -164,8 +162,7 @@ newListBtn.addEventListener("click", () => {
     const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
     closeFormBtn.addEventListener("click", () => {
         // toggle visibility of data-display container and create-new form
-        dataDisplay.classList.toggle("hide");
-        createNewTodoDataForm.classList.toggle("hide");
+        toggleDisplays(dataDisplay, createNewTodoDataForm);
     })
 });
 
@@ -185,8 +182,7 @@ allItemsBtn.addEventListener("click", () => {
         // set event listeners for update interaction
         updateItemBtn.addEventListener("click", (event) => {
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            updateExistingTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, updateExistingTodoDataForm);
 
             // populate update-existing form
             updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
@@ -213,8 +209,7 @@ allItemsBtn.addEventListener("click", () => {
                 updateTodoItemInStorage(formData, todoItemId);
 
                 // toggle visibility of data-display container and update-existing form
-                dataDisplay.classList.toggle("hide");
-                updateExistingTodoDataForm.classList.toggle("hide");
+                toggleDisplays(dataDisplay, updateExistingTodoDataForm);
 
                 // update text content of todo item element html
                 try {
@@ -229,8 +224,7 @@ allItemsBtn.addEventListener("click", () => {
             const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
             closeFormBtn.addEventListener("click", () => {
                 // toggle visibility of data-display container and update-existing form
-                dataDisplay.classList.toggle("hide");
-                updateExistingTodoDataForm.classList.toggle("hide");
+                toggleDisplays(dataDisplay, updateExistingTodoDataForm);
             })
         });
         // set event listeners for deletion interaction
@@ -257,8 +251,7 @@ allListsBtn.addEventListener("click", () => {
         // set event listeners for update interaction
         updateListBtn.addEventListener("click", (event) => {
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            updateExistingTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, updateExistingTodoDataForm);
             // populate update-existing form
             updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
 
@@ -284,8 +277,7 @@ allListsBtn.addEventListener("click", () => {
                 updateTodoListInStorage(formData, todoListId);
 
                 // toggle visibility of data-display container and update-existing form
-                dataDisplay.classList.toggle("hide");
-                updateExistingTodoDataForm.classList.toggle("hide");
+                toggleDisplays(dataDisplay, updateExistingTodoDataForm);
 
                 // update text content of todo list element html
                 try {
@@ -303,8 +295,7 @@ allListsBtn.addEventListener("click", () => {
             const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
             closeFormBtn.addEventListener("click", () => {
                 // toggle visibility of data-display container and update-existing form
-                dataDisplay.classList.toggle("hide");
-                updateExistingTodoDataForm.classList.toggle("hide");
+                toggleDisplays(dataDisplay, updateExistingTodoDataForm);
             })
         });
         // set event listeners for deletion interaction
@@ -386,8 +377,7 @@ todoListDropdown.addEventListener("change", (event) => {
     // set event listeners for update interaction
     updateListBtn.addEventListener("click", (event) => {
         // toggle visibility of data-display container and update-existing form
-        dataDisplay.classList.toggle("hide");
-        updateExistingTodoDataForm.classList.toggle("hide");
+        toggleDisplays(dataDisplay, updateExistingTodoDataForm);
         // populate update-existing form
         updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
 
@@ -402,8 +392,7 @@ todoListDropdown.addEventListener("change", (event) => {
             updateTodoListInStorage(formData, todoListId);
 
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            updateExistingTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, updateExistingTodoDataForm);
 
             // update text content of todo list element html
             try {
@@ -421,8 +410,7 @@ todoListDropdown.addEventListener("change", (event) => {
         const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
         closeFormBtn.addEventListener("click", () => {
             // toggle visibility of data-display container and update-existing form
-            dataDisplay.classList.toggle("hide");
-            updateExistingTodoDataForm.classList.toggle("hide");
+            toggleDisplays(dataDisplay, updateExistingTodoDataForm);
         })
     });
     
