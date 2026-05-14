@@ -12,7 +12,9 @@ import updateTodoListInStorage from "./crud-ops/updateTodoListInStorage.js";
 import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
 import * as handleFormLogic from "./form-logic/handle-form-data.js";
+import * as formEvents from "./event-logic/form-events.js";
 import toggleDisplays from "./utility/toggleDisplays.js";
+
 
 // DOM elements
 // dashboard
@@ -41,11 +43,14 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 newItemBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
     toggleDisplays(dataDisplay, createNewTodoDataForm);
-    // dataDisplay.classList.toggle("hide");
-    // createNewTodoDataForm.classList.toggle("hide");
+   
     // populate create-new form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
-    // handle form submission
+    
+    // handle form submission (NEW MODULAR METHOD IN TESTING)
+    // formEvents.handleNewTodoItemData(createNewTodoDataForm);
+    // formEvents.closeForm(createNewTodoDataForm, dataDisplay);
+
     const submitFormBtn = createNewTodoDataForm.querySelector("#submit-form-btn");
     submitFormBtn.addEventListener("click", (event) => {
         // prevent default form submission behaviour
@@ -56,51 +61,8 @@ newItemBtn.addEventListener("click", () => {
         handleFormLogic.handleTitleDuplicates("todo-item", createNewTodoDataForm.querySelector("#item-title"));
         handleFormLogic.sendNewFormData("todo-item",formData);
         toggleDisplays(dataDisplay, createNewTodoDataForm);
-
-    
-        // try {
-        //     // capture form data
-        //     const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-        //     // check for input validity
-        //     const invalidInputs = formInputs.filter(input => input.value === "");
-        //     if (invalidInputs.length > 0) {
-        //         alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-        //         return;
-        //     }
-
-        //     // handle duplicate todo item names
-        //     const appData = JSON.parse(localStorage.getItem("todoAppData"));
-        //     const todoItems = appData["todoItems"];
-        //     const inputTodoItemTitle = document.querySelector("#item-title");
-            
-        //     if (todoItems.find(item => item.title === inputTodoItemTitle.value)) {
-        //         // check the number of duplicates
-        //         const duplicateTitleRegex = new RegExp(`^${inputTodoItemTitle.value} \\([0-9]\\)$`);
-        //         const duplicateNum = todoItems.filter(item => duplicateTitleRegex.test(item.title)).length;
-        //         // append a number to the todo item title to indicate a duplication (allows 10 duplicate titles)
-        //         if (duplicateNum === 10) {
-        //             alert("No more than 10 copies of a todo list, please!");
-        //             return;
-        //         } else {
-        //             inputTodoItemTitle.value = `${inputTodoItemTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
-        //         }
-        //     }
-
-        //     // add to localStorage
-        //     const formData = formInputs.map(el => el.value);
-        //     const todoItemData = createTodoItem(formData);
-        //     addTodoItemToStorage(todoItemData);
-
-        //     // toggle visibility of data-display container and update-existing form
-        //     toggleDisplays(dataDisplay, createNewTodoDataForm);
-
-        //     // update and switch to contents of data-display container
-        //     dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
-        // } catch (error) {
-        //     console.log("Error:", error);
-        // }
     })
+    
     // handle closing form
     const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
     closeFormBtn.addEventListener("click", () => {
@@ -125,52 +87,7 @@ newListBtn.addEventListener("click", () => {
         handleFormLogic.handleTitleDuplicates("todo-list", createNewTodoDataForm.querySelector("#list-title"));
         handleFormLogic.sendNewFormData("todo-list", formData);
         toggleDisplays(dataDisplay, createNewTodoDataForm);
-        
-        // try {
-        //     // capture form data
-        //     const formInputs = [...createNewTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-        //     // check for input validity
-        //     const invalidInputs = formInputs.filter(input => input.value === "");
-        //     if (invalidInputs.length > 0) {
-        //         alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-        //         return;
-        //     }
-
-        //     // handle duplicate todo list names
-        //     const appData = JSON.parse(localStorage.getItem("todoAppData"));
-        //     const todoLists = appData["todoLists"];
-        //     const inputTodoListTitle = document.querySelector("#list-title");
-            
-        //     if (todoLists.find(list => list.title === inputTodoListTitle.value)) {
-        //         // check number of duplicates
-        //         const duplicateTitleRegex = new RegExp(`^${inputTodoListTitle.value} \\([0-9]\\)$`);
-        //         const duplicateNum = todoLists.filter(list => duplicateTitleRegex.test(list.title)).length;
-        //         // append a number to the todo list title to indicate a duplication (allows 10 duplicate titles)
-        //         if (duplicateNum === 10) {
-        //             alert("No more than 10 copies of a todo list, please!");
-        //             return;
-        //         } else {
-        //             inputTodoListTitle.value = `${inputTodoListTitle.value} (${duplicateNum === 0 ? 1 : duplicateNum + 1})`;
-        //         }
-        //     }
-
-        //     // add to localStorage
-        //     const formData = formInputs.map(el => el.value);
-        //     const todoListData = createTodoList(formData);
-        //     addTodoListToStorage(todoListData);
-
-        //     // toggle visibility of data-display container and update-existing form
-        //     toggleDisplays(dataDisplay, createNewTodoDataForm);
-
-        //     // update options for specific todo list selection
-        //     todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
-
-        //     // update and switch to contents of data-display container
-        //     dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-        // } catch (error) {
-        //     console.log("Error:", error);
-        // }
+    
     })
     // handle closing form
     const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
@@ -213,31 +130,6 @@ allItemsBtn.addEventListener("click", () => {
                 handleFormLogic.sendUpdatedFormData("todo-item", formData, todoItemId);
                 toggleDisplays(dataDisplay, updateExistingTodoDataForm);
 
-                // // capture form data
-                // const formInputs = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-                // // check for input validity
-                // const invalidInputs = formInputs.filter(input => input.value === "");
-                
-                // if (invalidInputs.length > 0) {
-                //     alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-                //     return;
-                // }
-
-                // // update localStorage
-                // const formData = formInputs.map(el => el.value);
-                // updateTodoItemInStorage(formData, todoItemId);
-
-                // // toggle visibility of data-display container and update-existing form
-                // toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-
-                // // update text content of todo item element html
-                // try {
-                //     const todoItemData = JSON.parse(localStorage.getItem("todoAppData"))["todoItems"].find(item => item.id === todoItemId);
-                //     todoDataDisplayer.updateTodoItemElement(itemEl, todoItemData);
-                // } catch (error) {
-                //     console.log("Error:", error);
-                // }
             })
 
             // handle closing form
@@ -286,20 +178,6 @@ allListsBtn.addEventListener("click", () => {
                 handleFormLogic.handleTitleDuplicates("todo-list", updateExistingTodoDataForm.querySelector("#list-title"));
                 handleFormLogic.sendUpdatedFormData("todo-list", formData, todoListId);
 
-                // // capture form data
-                // const formInputs = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON");
-
-                // // check for input validity
-                // const invalidInputs = formInputs.filter(input => input.value === "");
-                
-                // if (invalidInputs.length > 0) {
-                //     alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-                //     return;
-                // }
-
-                // // update localStorage
-                // const formData = formInputs.map(el => el.value);
-                // updateTodoListInStorage(formData, todoListId);
 
                 // toggle visibility of data-display container and update-existing form
                 toggleDisplays(dataDisplay, updateExistingTodoDataForm);
@@ -415,10 +293,6 @@ todoListDropdown.addEventListener("change", (event) => {
             handleFormLogic.handleInvalidInput(formData);
             handleFormLogic.handleTitleDuplicates("todo-list", updateExistingTodoDataForm.querySelector("#list-title"));
             handleFormLogic.sendUpdatedFormData("todo-list", formData, todoListId);
-
-            // // capture form data and update localStorage
-            // const formData = [...updateExistingTodoDataForm.elements].filter(el => el.tagName !== "BUTTON").map(el => el.value);
-            // updateTodoListInStorage(formData, todoListId);
 
             // toggle visibility of data-display container and update-existing form
             toggleDisplays(dataDisplay, updateExistingTodoDataForm);
