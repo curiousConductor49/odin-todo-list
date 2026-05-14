@@ -1,5 +1,7 @@
 import addTodoItemToStorage from "../crud-ops/addTodoItemToStorage.js";
 import addTodoListToStorage from "../crud-ops/addTodoListToStorage.js";
+import updateTodoItemInStorage from "../crud-ops/updateTodoItemInStorage.js";
+import updateTodoListInStorage from "../crud-ops/updateTodoListInStorage.js";
 import createTodoItem from "../crud-ops/createTodoItem.js";
 import createTodoList from "../crud-ops/createTodoList.js";
 
@@ -60,7 +62,7 @@ export function getFormData(form) {
     return formInputs;
 }
 
-export function sendFormData(dataType, formInputs) {
+export function sendNewFormData(dataType, formInputs) {
     const formData = formInputs.map(el => el.value);
 
     if (dataType === "todo-item") {
@@ -69,5 +71,15 @@ export function sendFormData(dataType, formInputs) {
     } else if (dataType === "todo-list") {
         const todoListData = createTodoList(formData);
         addTodoListToStorage(todoListData);
+    }
+}
+
+export function sendUpdatedFormData(dataType, formInputs, dataId) {
+    const formData = formInputs.map(el => el.value);
+
+    if (dataType === "todo-item") {
+        updateTodoItemInStorage(formData, dataId);
+    } else if (dataType === "todo-list") {
+        updateTodoListInStorage(formData, dataId);
     }
 }
