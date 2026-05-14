@@ -64,6 +64,7 @@ newItemBtn.addEventListener("click", () => {
     })
     
     // handle closing form
+    // formEvents.closeForm(createNewTodoDataForm, dataDisplay);
     const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
     closeFormBtn.addEventListener("click", () => {
         // toggle visibility of data-display container and create-new form
