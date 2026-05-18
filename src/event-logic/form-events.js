@@ -46,10 +46,10 @@ function handleListDataSubmission(dataForm, dataDisplay, event) {
     // add form data to localStorage
     handleFormLogic.sendNewFormData("todo-list", formData);
     // toggle displays
-    toggleDisplays(dataForm, dataDisplay);
+    toggleDisplays(dataDisplay, dataForm);
 }
 
-export function handleNewTodoListData(dataForm) {
+export function handleNewTodoListData(dataForm, dataDisplay) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => handleListDataSubmission(dataForm, dataDisplay, event));

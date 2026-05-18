@@ -57,27 +57,14 @@ newItemBtn.addEventListener("click", () => {
 newListBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
     toggleDisplays(dataDisplay, createNewTodoDataForm);
-    // populate create-new form
-    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
-    // handle form submission
-    const submitFormBtn = createNewTodoDataForm.querySelector("#submit-form-btn");
-    submitFormBtn.addEventListener("click", (event) => {
-        // prevent default form submission behaviour
-        event.preventDefault();
 
-        const formData = handleFormLogic.getFormData(createNewTodoDataForm);
-        handleFormLogic.handleInvalidInput(formData);
-        handleFormLogic.handleTitleDuplicates("todo-list", createNewTodoDataForm.querySelector("#list-title"));
-        handleFormLogic.sendNewFormData("todo-list", formData);
-        toggleDisplays(dataDisplay, createNewTodoDataForm);
+    // populate form
+    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
+    // handle using form
+    formEvents.handleNewTodoListData(createNewTodoDataForm, dataDisplay);
     
-    })
     // handle closing form
-    const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
-    closeFormBtn.addEventListener("click", () => {
-        // toggle visibility of data-display container and create-new form
-        toggleDisplays(dataDisplay, createNewTodoDataForm);
-    })
+    formEvents.closeForm(createNewTodoDataForm, dataDisplay);
 });
 
 // viewing todo data
