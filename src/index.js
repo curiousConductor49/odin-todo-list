@@ -73,53 +73,8 @@ allItemsBtn.addEventListener("click", () => {
     // show all todo items
     dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
     
-    // individual todo item logic (updating, deleting)
+    // handle individual todo item logic (updating, deleting)
     dataDisplayEvents.handleTodoItemDisplay(updateExistingTodoDataForm, dataDisplay);
-    // update data display
-    // dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
-    // const todoItemEls = [...document.querySelectorAll(".todo-item")];
-    // todoItemEls.forEach(itemEl => {
-    //     const todoItem = itemEl;
-    //     const todoItemId = itemEl.dataset.id;
-    //     const updateItemBtn = todoItem.querySelector(".update-item-btn");
-    //     const deleteItemBtn = todoItem.querySelector(".delete-item-btn");
-
-    //     // set event listeners for update interaction
-    //     updateItemBtn.addEventListener("click", (event) => {
-    //         // toggle visibility of data-display container and update-existing form
-    //         toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-
-    //         // populate update-existing form
-    //         updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
-
-    //         // handle form submission
-    //         const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
-    //         submitFormBtn.addEventListener("click", (event) => {
-    //             // prevent default form submission behaviour
-    //             event.preventDefault();
-
-    //             const formData = handleFormLogic.getFormData(updateExistingTodoDataForm);
-    //             handleFormLogic.handleInvalidInput(formData);
-    //             handleFormLogic.handleTitleDuplicates("todo-item", updateExistingTodoDataForm.querySelector("#item-title"));
-    //             handleFormLogic.sendUpdatedFormData("todo-item", formData, todoItemId);
-    //             toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-
-    //         })
-
-    //         // handle closing form
-    //         const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
-    //         closeFormBtn.addEventListener("click", () => {
-    //             // toggle visibility of data-display container and update-existing form
-    //             toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-    //         })
-    //     });
-    //     // set event listeners for deletion interaction
-    //     deleteItemBtn.addEventListener("click", (event) => {
-    //         // delete todo item and remove from dom
-    //         deleteTodoItemFromStorage(itemEl);
-    //         itemEl.remove();
-    //     });
-    // })
 });
 
 allListsBtn.addEventListener("click", () => {
