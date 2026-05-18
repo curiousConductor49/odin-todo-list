@@ -4,7 +4,7 @@ import * as displayTodoDataFromStorage from "../utility/displayTodoDataFromStora
 import deleteTodoItemFromStorage from "../crud-ops/deleteTodoItemFromStorage.js";
 import toggleDisplays from "../utility/toggleDisplays.js";
 
-// for the "all items" and "all lists" btns
+// helper functions for updating todo items and todo lists
 function handleUpdatingTodoItem(dataForm, dataDisplay, event) {
     // get the todo item element
     const todoItem = event.target.closest(".todo-item");
@@ -37,9 +37,13 @@ function handleUpdatingTodoItem(dataForm, dataDisplay, event) {
     }
 }
 
+function handleUpdatingTodoList(dataForm, dataDisplay, event) {}
+
 export function handleTodoItemDisplay(dataForm, dataDisplay) {
     // use event bubbling for all of dataDisplay's todo item children
     dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(dataForm, dataDisplay, event));
 }
+
+export function handleTodoListDisplay(dataForm, dataDisplay) {}
 
 // for the "specific todo list selection" dropdown
