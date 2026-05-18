@@ -48,7 +48,7 @@ newItemBtn.addEventListener("click", () => {
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
 
     // handle using form
-    formEvents.handleNewTodoItemData(createNewTodoDataForm, dataDisplay);
+    formEvents.handleTodoItemData(createNewTodoDataForm, dataDisplay);
 
     // handle closing form
     formEvents.closeForm(createNewTodoDataForm, dataDisplay);
@@ -61,7 +61,7 @@ newListBtn.addEventListener("click", () => {
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
     // handle using form
-    formEvents.handleNewTodoListData(createNewTodoDataForm, dataDisplay);
+    formEvents.handleTodoListData(createNewTodoDataForm, dataDisplay);
     
     // handle closing form
     formEvents.closeForm(createNewTodoDataForm, dataDisplay);
