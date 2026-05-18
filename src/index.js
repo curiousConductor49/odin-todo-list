@@ -43,33 +43,15 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 newItemBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
     toggleDisplays(dataDisplay, createNewTodoDataForm);
-   
-    // populate create-new form
+
+    // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
-    
-    // handle form submission (NEW MODULAR METHOD IN TESTING)
-    // formEvents.handleNewTodoItemData(createNewTodoDataForm);
-    // formEvents.closeForm(createNewTodoDataForm, dataDisplay);
 
-    const submitFormBtn = createNewTodoDataForm.querySelector("#submit-form-btn");
-    submitFormBtn.addEventListener("click", (event) => {
-        // prevent default form submission behaviour
-        event.preventDefault();
+    // handle using form
+    formEvents.handleNewTodoItemData(createNewTodoDataForm, dataDisplay);
 
-        const formData = handleFormLogic.getFormData(createNewTodoDataForm);
-        handleFormLogic.handleInvalidInput(formData);
-        handleFormLogic.handleTitleDuplicates("todo-item", createNewTodoDataForm.querySelector("#item-title"));
-        handleFormLogic.sendNewFormData("todo-item",formData);
-        toggleDisplays(dataDisplay, createNewTodoDataForm);
-    })
-    
     // handle closing form
-    // formEvents.closeForm(createNewTodoDataForm, dataDisplay);
-    const closeFormBtn = createNewTodoDataForm.querySelector("#close-form-btn");
-    closeFormBtn.addEventListener("click", () => {
-        // toggle visibility of data-display container and create-new form
-        toggleDisplays(dataDisplay, createNewTodoDataForm);
-    })
+    formEvents.closeForm(createNewTodoDataForm, dataDisplay);
 });
 
 newListBtn.addEventListener("click", () => {
