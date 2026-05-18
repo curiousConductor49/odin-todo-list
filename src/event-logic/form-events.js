@@ -18,14 +18,6 @@ function handleItemDataSubmission(dataForm, dataDisplay, event) {
     toggleDisplays(dataForm, dataDisplay);
 }
 
-export function handleNewTodoItemData(dataForm, dataDisplay) {
-    const submitFormBtn = dataForm.querySelector("#submit-form-btn");
-
-    submitFormBtn.addEventListener("click", (event) => handleItemDataSubmission(dataForm, dataDisplay, event));
-}
-
-export function handleUpdatedTodoItemData(dataForm) {}
-
 // helper function for creating new data and updating existing data (todo lists)
 function handleListDataSubmission(dataForm, dataDisplay, event) {
     // prevent default form submission behaviour
@@ -42,13 +34,17 @@ function handleListDataSubmission(dataForm, dataDisplay, event) {
     toggleDisplays(dataDisplay, dataForm);
 }
 
-export function handleNewTodoListData(dataForm, dataDisplay) {
+export function handleTodoItemData(dataForm, dataDisplay) {
+    const submitFormBtn = dataForm.querySelector("#submit-form-btn");
+
+    submitFormBtn.addEventListener("click", (event) => handleItemDataSubmission(dataForm, dataDisplay, event));
+}
+
+export function handleTodoListData(dataForm, dataDisplay) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => handleListDataSubmission(dataForm, dataDisplay, event));
 }
-
-export function handleUpdatedTodoListData(dataForm) {}
 
 export function closeForm(dataForm, dataDisplay) {
     const closeFormBtn = dataForm.querySelector("#close-form-btn");
