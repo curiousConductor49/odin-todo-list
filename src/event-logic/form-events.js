@@ -2,7 +2,7 @@ import * as dynamicHTMLPopulator from "../utility/dynamicHtmlPopulation.js";
 import * as handleFormLogic from "../form-logic/handle-form-data.js";
 import toggleDisplays from "../utility/toggleDisplays.js";
 
-// for "create new" and "update existing" form for todo items
+// helper function for creating new data and updating existing data (todo items)
 function handleItemDataSubmission(dataForm, dataDisplay, event) {
     // prevent default form submission behaviour
     event.preventDefault();
@@ -18,13 +18,6 @@ function handleItemDataSubmission(dataForm, dataDisplay, event) {
     toggleDisplays(dataForm, dataDisplay);
 }
 
-// generic form close function
-export function closeForm(dataForm, dataDisplay) {
-    const closeFormBtn = dataForm.querySelector("#close-form-btn");
-    
-    closeFormBtn.addEventListener("click", () => toggleDisplays(dataDisplay, dataForm));
-}
-
 export function handleNewTodoItemData(dataForm, dataDisplay) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
@@ -33,7 +26,7 @@ export function handleNewTodoItemData(dataForm, dataDisplay) {
 
 export function handleUpdatedTodoItemData(dataForm) {}
 
-// for "create new" and "update existing" form for todo lists
+// helper function for creating new data and updating existing data (todo lists)
 function handleListDataSubmission(dataForm, dataDisplay, event) {
     // prevent default form submission behaviour
     event.preventDefault();
@@ -56,3 +49,9 @@ export function handleNewTodoListData(dataForm, dataDisplay) {
 }
 
 export function handleUpdatedTodoListData(dataForm) {}
+
+export function closeForm(dataForm, dataDisplay) {
+    const closeFormBtn = dataForm.querySelector("#close-form-btn");
+    
+    closeFormBtn.addEventListener("click", () => toggleDisplays(dataDisplay, dataForm));
+}
