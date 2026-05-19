@@ -29,7 +29,7 @@ function handleListDataSubmission(dataForm, dataDisplay, event, listId = null) {
     // handle duplicate titles
     handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"));
     // add or update form data in localStorage
-    itemId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
+    listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
     // toggle displays
     toggleDisplays(dataDisplay, dataForm);
 }
