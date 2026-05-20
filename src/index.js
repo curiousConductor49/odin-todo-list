@@ -73,7 +73,6 @@ newListBtn.addEventListener("click", () => {
     formEvents.closeForm(createNewTodoDataForm, todoListsDisplay);
 });
 
-
 // set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)
 dataDisplayEvents.handleTodoItemDisplay(updateExistingTodoDataForm, todoItemsDisplay);
 
@@ -106,67 +105,8 @@ allListsBtn.addEventListener("click", () => {
     })
     // show all todo lists
     todoListsDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-
     // update options for specific todo list selection
     todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
-
-    // const todoListEls = [...document.querySelectorAll(".todo-list")];
-    // todoListEls.forEach(listEl => {
-    //     const todoList = listEl;
-    //     const todoListId = listEl.dataset.id;
-    //     const updateListBtn = todoList.querySelector(".update-list-btn");
-    //     const deleteListBtn = todoList.querySelector(".delete-list-btn");
-
-    //     // set event listeners for update interaction
-    //     updateListBtn.addEventListener("click", (event) => {
-    //         // toggle visibility of data-display container and update-existing form
-    //         toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-    //         // populate update-existing form
-    //         updateExistingTodoDataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoList.dataset.id);
-
-    //         // handle form submission
-    //         const submitFormBtn = updateExistingTodoDataForm.querySelector("#submit-form-btn");
-    //         submitFormBtn.addEventListener("click", (event) => {
-    //             // prevent default form submission behaviour
-    //             event.preventDefault();
-
-    //             const formData = handleFormLogic.getFormData(updateExistingTodoDataForm);
-    //             handleFormLogic.handleInvalidInput(formData);
-    //             handleFormLogic.handleTitleDuplicates("todo-list", updateExistingTodoDataForm.querySelector("#list-title"));
-    //             handleFormLogic.sendUpdatedFormData("todo-list", formData, todoListId);
-
-
-    //             // toggle visibility of data-display container and update-existing form
-    //             toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-
-    //             // update text content of todo list element html
-    //             try {
-    //                 const todoListData = JSON.parse(localStorage.getItem("todoAppData"))["todoLists"].find(list => list.id === todoListId);
-    //                 todoDataDisplayer.updateTodoListElement(todoList, todoListData);
-    //             } catch (error) {
-    //                 console.log("Error:", error);
-    //             }
-
-    //             // update options for specific todo list selection
-    //             todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
-    //         })
-
-    //         // handle closing form
-    //         const closeFormBtn = updateExistingTodoDataForm.querySelector("#close-form-btn");
-    //         closeFormBtn.addEventListener("click", () => {
-    //             // toggle visibility of data-display container and update-existing form
-    //             toggleDisplays(dataDisplay, updateExistingTodoDataForm);
-    //         })
-    //     });
-    //     // set event listeners for deletion interaction
-    //     deleteListBtn.addEventListener("click", (event) => {
-    //         // delete todo item and remove from dom
-    //         deleteTodoListFromStorage(listEl);
-    //         listEl.remove();
-    //         // update options for specific todo list selection
-    //         todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
-    //     });
-    // })
 });
 
 todoListDropdown.addEventListener("change", (event) => {
