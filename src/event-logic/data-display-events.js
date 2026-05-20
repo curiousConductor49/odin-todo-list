@@ -73,18 +73,12 @@ function handleUpdatingTodoList(dataForm, dataDisplay, event) {
 
 export function handleTodoItemDisplay(dataForm, dataDisplay) {
     // use event bubbling for all of dataDisplay's todo item children
-    dataDisplay.addEventListener("click", (event) => {
-        // dataDisplay.removeEventListener("click", handleUpdatingTodoList);
-        handleUpdatingTodoItem(dataForm, dataDisplay, event);
-    });
+    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(dataForm, dataDisplay, event));
 }
 
 export function handleTodoListDisplay(dataForm, dataDisplay) {
-    // use event bubbling for all of dataDisplay's todo item children
-    dataDisplay.addEventListener("click", (event) => {
-        // dataDisplay.removeEventListener("click", handleUpdatingTodoItem);
-        handleUpdatingTodoList(dataForm, dataDisplay, event);
-    });
+    // use event bubbling for all of dataDisplay's todo list children
+    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoList(dataForm, dataDisplay, event));
 }
 
 // for the "specific todo list selection" dropdown

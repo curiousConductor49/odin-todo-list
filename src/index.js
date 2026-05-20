@@ -32,6 +32,11 @@ const allListsBtn = document.querySelector("#all-lists-btn");
 const todoListDropdown = document.querySelector("#todo-list-dropdown");
 // container to display todo data
 const dataDisplay = document.querySelector("#data-display");
+export const todoItemsDisplay = document.querySelector("#todo-items-display");
+const todoListsDisplay = document.querySelector("#todo-lists-display");
+const singleTodoListDisplay = document.querySelector("#single-todo-list-display");
+const displays = [todoItemsDisplay, todoListsDisplay, singleTodoListDisplay];
+
 // container for forms to enter todo data
 const createNewTodoDataForm = document.querySelector("#create-new");
 const updateExistingTodoDataForm = document.querySelector("#update-existing");
@@ -43,46 +48,64 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
-    toggleDisplays(dataDisplay, createNewTodoDataForm);
+    toggleDisplays(todoItemsDisplay, createNewTodoDataForm);
 
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
 
     // handle using form
-    formEvents.handleTodoItemData(createNewTodoDataForm, dataDisplay);
+    formEvents.handleTodoItemData(createNewTodoDataForm, todoItemsDisplay);
 
     // handle closing form
-    formEvents.closeForm(createNewTodoDataForm, dataDisplay);
+    formEvents.closeForm(createNewTodoDataForm, todoItemsDisplay);
 });
 
 newListBtn.addEventListener("click", () => {
     // toggle visibility of data-display container and create-new form
-    toggleDisplays(dataDisplay, createNewTodoDataForm);
+    toggleDisplays(todoListsDisplay, createNewTodoDataForm);
 
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
     // handle using form
-    formEvents.handleTodoListData(createNewTodoDataForm, dataDisplay);
+    formEvents.handleTodoListData(createNewTodoDataForm, todoListsDisplay);
     
     // handle closing form
-    formEvents.closeForm(createNewTodoDataForm, dataDisplay);
+    formEvents.closeForm(createNewTodoDataForm, todoListsDisplay);
 });
 
-// viewing todo data
+
+// set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)
+dataDisplayEvents.handleTodoItemDisplay(updateExistingTodoDataForm, todoItemsDisplay);
+
+// set event listener to utilize event delegation for individual todo list logic (viewing, updating, deleting)
+dataDisplayEvents.handleTodoListDisplay(updateExistingTodoDataForm, todoListsDisplay);
+
 allItemsBtn.addEventListener("click", () => {
+    // hide other displays
+    displays.forEach(display => {
+        // display.classList.remove("hide");
+        if (display.id === "todo-items-display" && [...display.classList].includes("hide")) {
+            display.classList.remove("hide");
+        } else if (display.id !== "todo-items-display") {
+            display.classList.add("hide");
+        }
+    })
     // show all todo items
-    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
-    
-    // handle individual todo item logic (updating, deleting)
-    dataDisplayEvents.handleTodoItemDisplay(updateExistingTodoDataForm, dataDisplay);
+    todoItemsDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
 });
 
 allListsBtn.addEventListener("click", () => {
+    // hide other displays
+    displays.forEach(display => {
+        // display.classList.remove("hide");
+        if (display.id === "todo-lists-display" && [...display.classList].includes("hide")) {
+            display.classList.remove("hide");
+        } else if (display.id !== "todo-lists-display") {
+            display.classList.add("hide");
+        }
+    })
     // show all todo lists
-    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-
-    // handle individual todo list logic (updating, deleting)
-    dataDisplayEvents.handleTodoListDisplay(updateExistingTodoDataForm, dataDisplay);
+    todoListsDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
 
     // update options for specific todo list selection
     todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
