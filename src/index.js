@@ -94,6 +94,8 @@ allItemsBtn.addEventListener("click", () => {
     })
     // show all todo items
     todoItemsDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+    // refresh options for specific todo list selection
+    todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
 });
 
 allListsBtn.addEventListener("click", () => {
@@ -108,7 +110,7 @@ allListsBtn.addEventListener("click", () => {
     })
     // show all todo lists
     todoListsDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-    // update options for specific todo list selection
+    // refresh options for specific todo list selection
     todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
 });
 
