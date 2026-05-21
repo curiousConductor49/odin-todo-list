@@ -1,3 +1,4 @@
+import * as todoDataDisplayer from "../utility/displayTodoDataFromStorage.js"
 import * as handleFormLogic from "../form-logic/handle-form-data.js";
 import toggleDisplays from "../utility/toggleDisplays.js";
 
@@ -13,6 +14,8 @@ function handleItemDataSubmission(dataForm, dataDisplay, event, itemId = null) {
     handleFormLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"));
     // add or update form data in localStorage
     itemId === null ? handleFormLogic.sendNewFormData("todo-item", formData) : handleFormLogic.sendUpdatedFormData("todo-item", formData, itemId);
+    // update todo items data display
+    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
     // toggle displays
     toggleDisplays(dataForm, dataDisplay);
 }
@@ -29,6 +32,8 @@ function handleListDataSubmission(dataForm, dataDisplay, event, listId = null) {
     handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"));
     // add or update form data in localStorage
     listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
+    // update todo lists data display
+    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
     // toggle displays
     toggleDisplays(dataDisplay, dataForm);
 }
