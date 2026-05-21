@@ -58,6 +58,9 @@ newItemBtn.addEventListener("click", () => {
 
     // handle closing form
     formEvents.closeForm(createNewTodoDataForm, todoItemsDisplay);
+
+    // update todo items data display
+    todoItemsDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
 });
 
 newListBtn.addEventListener("click", () => {
@@ -71,6 +74,9 @@ newListBtn.addEventListener("click", () => {
     
     // handle closing form
     formEvents.closeForm(createNewTodoDataForm, todoListsDisplay);
+
+    // update todo lists data display
+    todoListsDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
 });
 
 // set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)

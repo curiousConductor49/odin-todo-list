@@ -1,4 +1,3 @@
-import * as dynamicHTMLPopulator from "../utility/dynamicHtmlPopulation.js";
 import * as handleFormLogic from "../form-logic/handle-form-data.js";
 import toggleDisplays from "../utility/toggleDisplays.js";
 
