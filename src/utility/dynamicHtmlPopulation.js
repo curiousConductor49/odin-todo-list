@@ -35,7 +35,7 @@ export function populateNewTodoItemFormFields() {
                 <label for="item-priority">Priority:</label>
                 <select id="item-priority">
                     <option value="high">High</option>
-                    <option value="high">Medium</option>
+                    <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
             </div>
