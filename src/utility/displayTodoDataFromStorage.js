@@ -65,7 +65,7 @@ export function createSelectedTodoListElement(selectedTodoList) {
     try {
         // get JSON data for selected todo list and corresponding todo item children
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
-        const todoList = appData["todoLists"].find(list => list.title === selectedTodoList.value);
+        const todoList = appData["todoLists"].find(list => list.id === selectedTodoList.value);
         const { title, id, description } = todoList;
         const todoItemChildren = appData["todoItems"].filter(item => item.parentListId === id);
         
