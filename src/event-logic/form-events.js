@@ -14,10 +14,6 @@ function handleItemDataSubmission(dataForm, dataDisplay, event, itemId = null) {
     handleFormLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"));
     // add or update form data in localStorage
     itemId === null ? handleFormLogic.sendNewFormData("todo-item", formData) : handleFormLogic.sendUpdatedFormData("todo-item", formData, itemId);
-    // update todo items data display
-    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
-    // toggle displays
-    toggleDisplays(dataForm, dataDisplay);
 }
 
 // helper function for creating new data and updating existing data (todo lists)
@@ -32,22 +28,43 @@ function handleListDataSubmission(dataForm, dataDisplay, event, listId = null) {
     handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"));
     // add or update form data in localStorage
     listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
-    // update todo lists data display
-    dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-    // toggle displays
-    toggleDisplays(dataDisplay, dataForm);
 }
 
 export function handleTodoItemData(dataForm, dataDisplay, itemId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
-    submitFormBtn.addEventListener("click", (event) => handleItemDataSubmission(dataForm, dataDisplay, event, itemId));
+    submitFormBtn.addEventListener("click", (event) => {
+        // handle data submission
+        handleItemDataSubmission(dataForm, dataDisplay, event, itemId);
+        // update todo items data display
+        dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+        // toggle displays
+        toggleDisplays(dataForm, dataDisplay);
+    });
 }
 
 export function handleTodoListData(dataForm, dataDisplay, listId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
-    submitFormBtn.addEventListener("click", (event) => handleListDataSubmission(dataForm, dataDisplay, event, listId));
+    submitFormBtn.addEventListener("click", (event) => {
+        // handle data submission
+        handleListDataSubmission(dataForm, dataDisplay, event, listId);
+        // update todo lists data display
+        dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
+        // toggle displays
+        toggleDisplays(dataDisplay, dataForm);
+    });
+}
+
+export function handleSingleTodoListData(dataForm, dataDisplay, listId = null) {
+    const submitFormBtn = dataForm.querySelector("#submit-form-btn");
+
+    submitFormBtn.addEventListener("click", (event) => {
+        // handle data submission
+        handleListDataSubmission(dataForm, dataDisplay, event, listId);
+        // toggle displays
+        toggleDisplays(dataDisplay, dataForm);
+    });
 }
 
 export function closeForm(dataForm, dataDisplay) {

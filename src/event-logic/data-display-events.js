@@ -47,11 +47,16 @@ function handleUpdatingTodoList(dataForm, dataDisplay, event) {
     if ([...event.target.classList].includes("update-list-btn")) {
         // set innerHTML of form
         dataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoListId);
+
         // toggle displays
         toggleDisplays(dataDisplay, dataForm);
-        // handle form submission and closing
-        formEvents.handleTodoListData(dataForm, dataDisplay, todoListId);
+
+        // handle form submission (for either all todo lists or a single todo list displayed from the selection dropdown)
+        todoList.parentElement.id === "single-todo-list-display" ? formEvents.handleSingleTodoListData(dataForm, dataDisplay, todoListId) : formEvents.handleTodoListData(dataForm, dataDisplay, todoListId);
+
+        // handle form closing
         formEvents.closeForm(dataForm, dataDisplay);
+
         // update dom element
         const submitFormBtn = dataForm.querySelector("#submit-form-btn");
         submitFormBtn.addEventListener("click", () => {
@@ -71,6 +76,18 @@ function handleUpdatingTodoList(dataForm, dataDisplay, event) {
     }
 }
 
+function handleUpdatingSelectedTodoList(dataForm, dataDisplay, event) {
+    // get event target
+    const targetParentEl = event.target.parentElement;
+    if (targetParentEl.closest(".todo-item")) {
+        // event delegation for when a todo item is clicked
+        handleUpdatingTodoItem(dataForm, dataDisplay, event);
+    } else if (targetParentEl.closest(".todo-list")) {
+        // event delegation for when a todo list is clicked
+        handleUpdatingTodoList(dataForm, dataDisplay, event);
+    }
+}
+
 export function handleTodoItemDisplay(dataForm, dataDisplay) {
     // use event bubbling for all of dataDisplay's todo item children
     dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(dataForm, dataDisplay, event));
@@ -82,3 +99,6 @@ export function handleTodoListDisplay(dataForm, dataDisplay) {
 }
 
 // for the "specific todo list selection" dropdown
+export function handleSingleTodoListDisplay(dataForm, dataDisplay) {
+    dataDisplay.addEventListener("click", (event) => handleUpdatingSelectedTodoList(dataForm, dataDisplay, event));
+}
