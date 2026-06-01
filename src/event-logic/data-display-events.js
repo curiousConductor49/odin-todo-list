@@ -35,9 +35,8 @@ export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event)
             }
         })
     } else if ([...event.target.classList].includes("delete-item-btn")) {
-        // close modal and toggle form visibility
+        // close modal
         formDialog.close();
-        dataForm.classList.toggle("hide");
 
         // remove todo item from storage and dom
         deleteTodoItemFromStorage(todoItem);
@@ -78,9 +77,8 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
             }
         })
     } else if ([...event.target.classList].includes("delete-list-btn")) {
-        // close modal and toggle form visibility
+        // close modal
         formDialog.close();
-        dataForm.classList.toggle("hide");
 
         // delete todo list from storage and dom
         deleteTodoListFromStorage(todoList);
