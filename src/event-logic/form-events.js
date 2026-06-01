@@ -58,14 +58,15 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = n
     });
 }
 
-export function handleSingleTodoListData(dataForm, dataDisplay, listId = null) {
+export function handleSingleTodoListData(formDialog, dataForm, listId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
         handleListDataSubmission(dataForm, event, listId);
-        // toggle displays
-        toggleDisplays(dataDisplay, dataForm);
+        // toggle form display and close modal
+        dataForm.classList.toggle("hide");
+        formDialog.close();
     });
 }
 

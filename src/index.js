@@ -68,10 +68,10 @@ newListBtn.addEventListener("click", () => {
 dataDisplayEvents.handleTodoItemDisplay(formDialog, updateExistingTodoDataForm, todoItemsDisplay);
 
 // set event listener to utilize event delegation for individual todo list logic (viewing, updating, deleting)
-dataDisplayEvents.handleTodoListDisplay(updateExistingTodoDataForm, todoListsDisplay);
+dataDisplayEvents.handleTodoListDisplay(formDialog, updateExistingTodoDataForm, todoListsDisplay);
 
 // set event listener to utilize event delegation for single todo list logic (viewing, updating, deleting) 
-dataDisplayEvents.handleSingleTodoListDisplay(updateExistingTodoDataForm, singleTodoListDisplay);
+dataDisplayEvents.handleSingleTodoListDisplay(formDialog, updateExistingTodoDataForm, singleTodoListDisplay);
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {
