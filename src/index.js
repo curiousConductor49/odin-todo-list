@@ -73,7 +73,6 @@ dataDisplayEvents.handleSingleTodoListDisplay(updateExistingTodoDataForm, single
 allItemsBtn.addEventListener("click", () => {
     // hide other displays
     displays.forEach(display => {
-        // display.classList.remove("hide");
         if (display.id === "todo-items-display" && [...display.classList].includes("hide")) {
             display.classList.remove("hide");
         } else if (display.id !== "todo-items-display") {
@@ -89,7 +88,6 @@ allItemsBtn.addEventListener("click", () => {
 allListsBtn.addEventListener("click", () => {
     // hide other displays
     displays.forEach(display => {
-        // display.classList.remove("hide");
         if (display.id === "todo-lists-display" && [...display.classList].includes("hide")) {
             display.classList.remove("hide");
         } else if (display.id !== "todo-lists-display") {
