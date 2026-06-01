@@ -4,8 +4,7 @@ import * as displayTodoDataFromStorage from "../utility/displayTodoDataFromStora
 import deleteTodoItemFromStorage from "../crud-ops/deleteTodoItemFromStorage.js";
 import deleteTodoListFromStorage from "../crud-ops/deleteTodoListFromStorage.js";
 
-// helper functions for updating todo items and todo lists
-function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event) {
+export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event) {
     // get the todo item element
     const todoItem = event.target.closest(".todo-item");
     const todoItemId = todoItem.dataset.id;
@@ -46,7 +45,7 @@ function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event) {
     }
 }
 
-function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event) {
+export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event) {
     // get the todo list element
     const todoList = event.target.closest(".todo-list");
     const todoListId = todoList.dataset.id;
@@ -89,7 +88,7 @@ function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event) {
     }
 }
 
-function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, event) {
+export function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, event) {
     // get event target
     const targetParentEl = event.target.parentElement;
     if (targetParentEl.closest(".todo-item")) {
@@ -99,19 +98,4 @@ function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, event
         // event delegation for when a todo list is clicked
         handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event);
     }
-}
-
-export function handleTodoItemDisplay(formDialog, dataForm, dataDisplay) {
-    // use event bubbling for all of dataDisplay's todo item children
-    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event));
-}
-
-export function handleTodoListDisplay(formDialog, dataForm, dataDisplay) {
-    // use event bubbling for all of dataDisplay's todo list children
-    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event));
-}
-
-// for the "specific todo list selection" dropdown
-export function handleSingleTodoListDisplay(formDialog, dataForm, dataDisplay) {
-    dataDisplay.addEventListener("click", (event) => handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, event));
 }

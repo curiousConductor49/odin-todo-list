@@ -5,7 +5,6 @@ import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
 import * as formEvents from "./event-logic/form-events.js";
 import * as dataDisplayEvents from "./event-logic/data-display-events.js"
-import toggleDisplays from "./utility/toggleDisplays.js";
 
 
 // DOM elements
@@ -64,14 +63,14 @@ newListBtn.addEventListener("click", () => {
     formEvents.closeForm(formDialog, createNewTodoDataForm);
 });
 
-// set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)
-dataDisplayEvents.handleTodoItemDisplay(formDialog, updateExistingTodoDataForm, todoItemsDisplay);
+// utilize event delegation for individual todo item logic (viewing, updating, deleting)
+todoItemsDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingTodoItem(formDialog, updateExistingTodoDataForm, todoItemsDisplay, event));
 
-// set event listener to utilize event delegation for individual todo list logic (viewing, updating, deleting)
-dataDisplayEvents.handleTodoListDisplay(formDialog, updateExistingTodoDataForm, todoListsDisplay);
+// utilize event delegation for individual todo list logic (viewing, updating, deleting)
+todoListsDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingTodoList(formDialog, updateExistingTodoDataForm, todoListsDisplay, event));
 
-// set event listener to utilize event delegation for single todo list logic (viewing, updating, deleting) 
-dataDisplayEvents.handleSingleTodoListDisplay(formDialog, updateExistingTodoDataForm, singleTodoListDisplay);
+// utilize event delegation for selected todo list logic (viewing, updating, deleting)
+singleTodoListDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingSelectedTodoList(formDialog, updateExistingTodoDataForm, singleTodoListDisplay, event));
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {
