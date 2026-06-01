@@ -36,23 +36,25 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
         handleItemDataSubmission(dataForm, event, itemId);
-        // close dialog
+        // toggle form visibility and close dialog
+        dataForm.classList.toggle("hide");
         formDialog.close();
         // update todo items data display
         dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
     });
 }
 
-export function handleTodoListData(dataForm, dataDisplay, listId = null) {
+export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
         handleListDataSubmission(dataForm, event, listId);
+        // toggle form visibility and close dialog
+        dataForm.classList.toggle("hide");
+        formDialog.close();
         // update todo lists data display
         dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
-        // toggle displays
-        toggleDisplays(dataDisplay, dataForm);
     });
 }
 

@@ -19,7 +19,6 @@ const allListsBtn = document.querySelector("#all-lists-btn");
 const todoListDropdown = document.querySelector("#todo-list-dropdown");
 
 // containers to display todo data
-const dataDisplay = document.querySelector("#data-display");
 const todoItemsDisplay = document.querySelector("#todo-items-display");
 const todoListsDisplay = document.querySelector("#todo-lists-display");
 const singleTodoListDisplay = document.querySelector("#single-todo-list-display");
@@ -51,16 +50,18 @@ newItemBtn.addEventListener("click", () => {
 });
 
 newListBtn.addEventListener("click", () => {
-    // toggle visibility of data-display container and create-new form
-    toggleDisplays(todoListsDisplay, createNewTodoDataForm);
+    // toggle visibility of create-new form and open dialog
+    createNewTodoDataForm.classList.toggle("hide");
+    formDialog.showModal();
 
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
+    
     // handle using form
-    formEvents.handleTodoListData(createNewTodoDataForm, todoListsDisplay);
+    formEvents.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
     
     // handle closing form
-    formEvents.closeForm(createNewTodoDataForm, todoListsDisplay);
+    formEvents.closeForm(formDialog, createNewTodoDataForm);
 });
 
 // set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)
