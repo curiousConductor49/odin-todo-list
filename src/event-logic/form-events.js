@@ -1,6 +1,5 @@
 import * as todoDataDisplayer from "../utility/displayTodoDataFromStorage.js"
 import * as handleFormLogic from "../form-logic/handle-form-data.js";
-import toggleDisplays from "../utility/toggleDisplays.js";
 
 // helper function for creating new data and updating existing data (todo items)
 function handleItemDataSubmission(dataForm, event, itemId = null) {
@@ -39,8 +38,10 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
         // toggle form visibility and close dialog
         dataForm.classList.toggle("hide");
         formDialog.close();
-        // update todo items data display
-        dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+        // update data display with all todo items if the data is not being displayed from a specific todo list
+        if (dataDisplay.id !== "single-todo-list-display") {
+            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+        }
     });
 }
 
