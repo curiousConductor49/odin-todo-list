@@ -3,7 +3,7 @@ import * as handleFormLogic from "../form-logic/handle-form-data.js";
 import toggleDisplays from "../utility/toggleDisplays.js";
 
 // helper function for creating new data and updating existing data (todo items)
-function handleItemDataSubmission(dataForm, dataDisplay, event, itemId = null) {
+function handleItemDataSubmission(dataForm, event, itemId = null) {
     // prevent default form submission behaviour
     event.preventDefault();
     // get form data
@@ -17,7 +17,7 @@ function handleItemDataSubmission(dataForm, dataDisplay, event, itemId = null) {
 }
 
 // helper function for creating new data and updating existing data (todo lists)
-function handleListDataSubmission(dataForm, dataDisplay, event, listId = null) {
+function handleListDataSubmission(dataForm, event, listId = null) {
     // prevent default form submission behaviour
     event.preventDefault();
     // get form data
@@ -30,16 +30,16 @@ function handleListDataSubmission(dataForm, dataDisplay, event, listId = null) {
     listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
 }
 
-export function handleTodoItemData(dataForm, dataDisplay, itemId = null) {
+export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleItemDataSubmission(dataForm, dataDisplay, event, itemId);
+        handleItemDataSubmission(dataForm, event, itemId);
+        // close dialog
+        formDialog.close();
         // update todo items data display
         dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
-        // toggle displays
-        toggleDisplays(dataForm, dataDisplay);
     });
 }
 
@@ -48,7 +48,7 @@ export function handleTodoListData(dataForm, dataDisplay, listId = null) {
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleListDataSubmission(dataForm, dataDisplay, event, listId);
+        handleListDataSubmission(dataForm, event, listId);
         // update todo lists data display
         dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
         // toggle displays
@@ -61,14 +61,17 @@ export function handleSingleTodoListData(dataForm, dataDisplay, listId = null) {
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleListDataSubmission(dataForm, dataDisplay, event, listId);
+        handleListDataSubmission(dataForm, event, listId);
         // toggle displays
         toggleDisplays(dataDisplay, dataForm);
     });
 }
 
-export function closeForm(dataForm, dataDisplay) {
+export function closeForm(formDialog, dataForm) {
     const closeFormBtn = dataForm.querySelector("#close-form-btn");
     
-    closeFormBtn.addEventListener("click", () => toggleDisplays(dataDisplay, dataForm));
+    closeFormBtn.addEventListener("click", () => {
+        formDialog.close();
+        dataForm.classList.toggle("hide");
+    });
 }
