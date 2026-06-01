@@ -18,13 +18,15 @@ const allItemsBtn = document.querySelector("#all-items-btn");
 const allListsBtn = document.querySelector("#all-lists-btn");
 const todoListDropdown = document.querySelector("#todo-list-dropdown");
 
-// container to display todo data
+// containers to display todo data
+const dataDisplay = document.querySelector("#data-display");
 const todoItemsDisplay = document.querySelector("#todo-items-display");
 const todoListsDisplay = document.querySelector("#todo-lists-display");
 const singleTodoListDisplay = document.querySelector("#single-todo-list-display");
 const displays = [todoItemsDisplay, todoListsDisplay, singleTodoListDisplay];
 
 // container for forms to enter todo data
+const formDialog = document.querySelector("#form-dialog");
 const createNewTodoDataForm = document.querySelector("#create-new");
 const updateExistingTodoDataForm = document.querySelector("#update-existing");
 
@@ -34,17 +36,18 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPo
 
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
-    // toggle visibility of data-display container and create-new form
-    toggleDisplays(todoItemsDisplay, createNewTodoDataForm);
+    // toggle visibility of create-new form and open dialog
+    createNewTodoDataForm.classList.toggle("hide");
+    formDialog.showModal();
 
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
 
     // handle using form
-    formEvents.handleTodoItemData(createNewTodoDataForm, todoItemsDisplay);
+    formEvents.handleTodoItemData(formDialog, createNewTodoDataForm, todoItemsDisplay);
 
     // handle closing form
-    formEvents.closeForm(createNewTodoDataForm, todoItemsDisplay);
+    formEvents.closeForm(formDialog, createNewTodoDataForm);
 });
 
 newListBtn.addEventListener("click", () => {
