@@ -6,7 +6,7 @@ import deleteTodoListFromStorage from "../crud-ops/deleteTodoListFromStorage.js"
 import toggleDisplays from "../utility/toggleDisplays.js";
 
 // helper functions for updating todo items and todo lists
-function handleUpdatingTodoItem(dataForm, dataDisplay, event) {
+function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event) {
     // get the todo item element
     const todoItem = event.target.closest(".todo-item");
     const todoItemId = todoItem.dataset.id;
@@ -15,11 +15,15 @@ function handleUpdatingTodoItem(dataForm, dataDisplay, event) {
     if ([...event.target.classList].includes("update-item-btn")) {
         // set innerHTML of form
         dataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
-        // toggle displays
-        toggleDisplays(dataDisplay, dataForm);
+
+        // toggle form visibility and open modal
+        dataForm.classList.toggle("hide");
+        formDialog.showModal();
+
         // handle form submission and closing
-        formEvents.handleTodoItemData(dataForm, dataDisplay, todoItemId);
-        formEvents.closeForm(dataForm, dataDisplay);
+        formEvents.handleTodoItemData(formDialog, dataForm, dataDisplay, todoItemId);
+        formEvents.closeForm(formDialog, dataForm);
+
         // update dom element
         const submitFormBtn = dataForm.querySelector("#submit-form-btn");
         submitFormBtn.addEventListener("click", () => {
@@ -33,6 +37,11 @@ function handleUpdatingTodoItem(dataForm, dataDisplay, event) {
             }
         })
     } else if ([...event.target.classList].includes("delete-item-btn")) {
+        // close modal and toggle form visibility
+        formDialog.close();
+        dataForm.classList.toggle("hide");
+        
+        // remove todo item from storage and dom
         deleteTodoItemFromStorage(todoItem);
         todoItem.remove();
     }
@@ -88,9 +97,9 @@ function handleUpdatingSelectedTodoList(dataForm, dataDisplay, event) {
     }
 }
 
-export function handleTodoItemDisplay(dataForm, dataDisplay) {
+export function handleTodoItemDisplay(formDialog, dataForm, dataDisplay) {
     // use event bubbling for all of dataDisplay's todo item children
-    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(dataForm, dataDisplay, event));
+    dataDisplay.addEventListener("click", (event) => handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event));
 }
 
 export function handleTodoListDisplay(dataForm, dataDisplay) {

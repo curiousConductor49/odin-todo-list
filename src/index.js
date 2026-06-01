@@ -56,7 +56,7 @@ newListBtn.addEventListener("click", () => {
 
     // populate form
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
-    
+
     // handle using form
     formEvents.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
     
@@ -65,7 +65,7 @@ newListBtn.addEventListener("click", () => {
 });
 
 // set event listener to utilize event delegation for individual todo item logic (viewing, updating, deleting)
-dataDisplayEvents.handleTodoItemDisplay(updateExistingTodoDataForm, todoItemsDisplay);
+dataDisplayEvents.handleTodoItemDisplay(formDialog, updateExistingTodoDataForm, todoItemsDisplay);
 
 // set event listener to utilize event delegation for individual todo list logic (viewing, updating, deleting)
 dataDisplayEvents.handleTodoListDisplay(updateExistingTodoDataForm, todoListsDisplay);
