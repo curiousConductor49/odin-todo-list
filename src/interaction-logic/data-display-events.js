@@ -1,4 +1,4 @@
-import * as formEvents from "../event-logic/form-events.js";
+import * as formEvents from "./form-events.js";
 import * as dynamicHTMLPopulator from "../utility/dynamicHtmlPopulation.js";
 import * as displayTodoDataFromStorage from "../utility/displayTodoDataFromStorage.js"
 import deleteTodoItemFromStorage from "../crud-ops/deleteTodoItemFromStorage.js";

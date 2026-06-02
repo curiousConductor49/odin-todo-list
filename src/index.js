@@ -3,8 +3,8 @@ import "./styles.css";
 import initlocalStorageData from "./onPageLoad.js";
 import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
 import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
-import * as formEvents from "./event-logic/form-events.js";
-import * as dataDisplayEvents from "./event-logic/data-display-events.js"
+import * as formEvents from "./interaction-logic/form-events.js";
+import * as dataDisplayEvents from "./interaction-logic/data-display-events.js"
 
 
 // DOM elements
