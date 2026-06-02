@@ -1,3 +1,5 @@
+import populateTodoListDropdown from "./dynamic-selection-population.js";
+
 export function populateNewTodoItemFormFields() {
     try {
         // create form fields
