@@ -1,5 +1,5 @@
 import * as formEvents from "./form-events.js";
-import * as dynamicHTMLPopulator from "../utility/dynamicHtmlPopulation.js";
+import * as dynamicHTMLPopulator from "../utility/dynamic-form-population.js";
 import * as displayTodoDataFromStorage from "../utility/display-todo-data.js"
 import deleteTodoItemFromStorage from "../crud-ops/delete-todo-item-from-storage.js";
 import deleteTodoListFromStorage from "../crud-ops/delete-todo-list-from-storage.js";

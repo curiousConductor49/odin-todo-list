@@ -1,7 +1,8 @@
 // imports
 import "./styles.css";
 import initlocalStorageData from "./onPageLoad.js";
-import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
+import * as dynamicHTMLPopulator from "./utility/dynamic-form-population.js";
+import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
 import * as todoDataDisplayer from "./utility/display-todo-data.js";
 import * as formEvents from "./interaction-logic/form-events.js";
 import * as dataDisplayEvents from "./interaction-logic/data-display-events.js"
@@ -30,7 +31,7 @@ const updateExistingTodoDataForm = document.querySelector("#update-existing");
 
 // upon complete page load, initialize app data and populate the todo list dropdown based on app data
 window.addEventListener("load", initlocalStorageData);
-window.addEventListener("load", () => todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown());
+window.addEventListener("load", () => todoListDropdown.innerHTML = populateTodoListDropdown());
 
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
@@ -85,7 +86,7 @@ allItemsBtn.addEventListener("click", () => {
     // show all todo items
     todoItemsDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
     // refresh options for specific todo list selection
-    todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+    todoListDropdown.innerHTML = populateTodoListDropdown();
 });
 
 allListsBtn.addEventListener("click", () => {
@@ -100,7 +101,7 @@ allListsBtn.addEventListener("click", () => {
     // show all todo lists
     todoListsDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
     // refresh options for specific todo list selection
-    todoListDropdown.innerHTML = dynamicHTMLPopulator.populateTodoListDropdown();
+    todoListDropdown.innerHTML = populateTodoListDropdown();
 });
 
 todoListDropdown.addEventListener("change", (event) => {
