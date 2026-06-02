@@ -2,7 +2,7 @@
 import "./styles.css";
 import initlocalStorageData from "./onPageLoad.js";
 import * as dynamicHTMLPopulator from "./utility/dynamicHtmlPopulation.js";
-import * as todoDataDisplayer from "./utility/displayTodoDataFromStorage.js";
+import * as todoDataDisplayer from "./utility/display-todo-data.js";
 import * as formEvents from "./interaction-logic/form-events.js";
 import * as dataDisplayEvents from "./interaction-logic/data-display-events.js"
 

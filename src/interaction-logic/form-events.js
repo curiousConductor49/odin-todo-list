@@ -1,4 +1,4 @@
-import * as todoDataDisplayer from "../utility/displayTodoDataFromStorage.js"
+import * as todoDataDisplayer from "../utility/display-todo-data.js"
 import * as handleFormLogic from "../form-logic/handle-form-data.js";
 
 // helper function for creating new data and updating existing data (todo items)
