@@ -1,5 +1,5 @@
 import * as formEvents from "./form-interactions.js";
-import * as dynamicHTMLPopulator from "../utility/dynamic-form-population.js";
+import * as dynamicFormPopulator from "../utility/dynamic-form-population.js";
 import * as displayTodoDataFromStorage from "../utility/display-todo-data.js"
 import deleteTodoItemFromStorage from "../crud-ops/delete-todo-item-from-storage.js";
 import deleteTodoListFromStorage from "../crud-ops/delete-todo-list-from-storage.js";
@@ -12,7 +12,7 @@ export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event)
     // conditional logic based on which button of the todo item element was clicked
     if ([...event.target.classList].includes("update-item-btn")) {
         // set innerHTML of form
-        dataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoItemFormFields(todoItemId);
+        dataForm.innerHTML = dynamicFormPopulator.populateExistingTodoItemFormFields(todoItemId);
 
         // toggle form visibility and open modal
         dataForm.classList.toggle("hide");
@@ -52,7 +52,7 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
     // conditional logic based on which button of the todo list element was clicked
     if ([...event.target.classList].includes("update-list-btn")) {
         // set innerHTML of form
-        dataForm.innerHTML = dynamicHTMLPopulator.populateExistingTodoListFormFields(todoListId);
+        dataForm.innerHTML = dynamicFormPopulator.populateExistingTodoListFormFields(todoListId);
 
         // toggle form visibility and open modal
         dataForm.classList.toggle("hide");

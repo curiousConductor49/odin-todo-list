@@ -1,7 +1,7 @@
 // imports
 import "./styles.css";
 import initlocalStorageData from "./onPageLoad.js";
-import * as dynamicHTMLPopulator from "./utility/dynamic-form-population.js";
+import * as dynamicFormPopulator from "./utility/dynamic-form-population.js";
 import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
 import * as todoDataDisplayer from "./utility/display-todo-data.js";
 import * as formInteractions from "./interaction-logic/form-interactions.js";
@@ -40,7 +40,7 @@ newItemBtn.addEventListener("click", () => {
     formDialog.showModal();
 
     // populate form
-    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
+    createNewTodoDataForm.innerHTML = dynamicFormPopulator.populateNewTodoItemFormFields();
 
     // handle using form
     formInteractions.handleTodoItemData(formDialog, createNewTodoDataForm, todoItemsDisplay);
@@ -55,7 +55,7 @@ newListBtn.addEventListener("click", () => {
     formDialog.showModal();
 
     // populate form
-    createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
+    createNewTodoDataForm.innerHTML = dynamicFormPopulator.populateNewTodoListFormFields();
 
     // handle using form
     formInteractions.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
