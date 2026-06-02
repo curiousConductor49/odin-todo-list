@@ -5,7 +5,7 @@ import * as dynamicFormPopulator from "./utility/dynamic-form-population.js";
 import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
 import * as todoDataDisplayer from "./utility/display-todo-data.js";
 import * as formInteractions from "./interaction-logic/form-interactions.js";
-import * as dataDisplayEvents from "./interaction-logic/data-display-events.js"
+import * as todoDataInteractions from "./interaction-logic/todo-data-interactions.js"
 
 
 // DOM elements
@@ -65,13 +65,13 @@ newListBtn.addEventListener("click", () => {
 });
 
 // utilize event delegation for individual todo item logic (viewing, updating, deleting)
-todoItemsDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingTodoItem(formDialog, updateExistingTodoDataForm, todoItemsDisplay, event));
+todoItemsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoItem(formDialog, updateExistingTodoDataForm, todoItemsDisplay, event));
 
 // utilize event delegation for individual todo list logic (viewing, updating, deleting)
-todoListsDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingTodoList(formDialog, updateExistingTodoDataForm, todoListsDisplay, event));
+todoListsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoList(formDialog, updateExistingTodoDataForm, todoListsDisplay, event));
 
 // utilize event delegation for selected todo list logic (viewing, updating, deleting)
-singleTodoListDisplay.addEventListener("click", (event) => dataDisplayEvents.handleUpdatingSelectedTodoList(formDialog, updateExistingTodoDataForm, singleTodoListDisplay, event));
+singleTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, updateExistingTodoDataForm, singleTodoListDisplay, event));
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {

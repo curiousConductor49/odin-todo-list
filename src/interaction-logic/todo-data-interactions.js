@@ -1,6 +1,6 @@
 import * as formEvents from "./form-interactions.js";
 import * as dynamicFormPopulator from "../utility/dynamic-form-population.js";
-import * as displayTodoDataFromStorage from "../utility/display-todo-data.js"
+import * as todoDataDisplayer from "../utility/display-todo-data.js"
 import deleteTodoItemFromStorage from "../crud-ops/delete-todo-item-from-storage.js";
 import deleteTodoListFromStorage from "../crud-ops/delete-todo-list-from-storage.js";
 
@@ -29,7 +29,7 @@ export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event)
                 const appData = JSON.parse(localStorage.getItem("todoAppData"));
                 const todoItems = appData["todoItems"];
                 const todoItemData = todoItems.find(item => item.id === todoItemId);
-                displayTodoDataFromStorage.updateTodoItemElement(todoItem, todoItemData);
+                todoDataDisplayer.updateTodoItemElement(todoItem, todoItemData);
             } catch (error) {
                 console.log("Error:", error);
             }
@@ -71,7 +71,7 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
                 const appData = JSON.parse(localStorage.getItem("todoAppData"));
                 const todoLists = appData["todoLists"];
                 const todoListData = todoLists.find(list => list.id === todoListId);
-                displayTodoDataFromStorage.updateTodoListElement(todoList, todoListData);
+                todoDataDisplayer.updateTodoListElement(todoList, todoListData);
             } catch (error) {
                 console.log("Error:", error);
             }
