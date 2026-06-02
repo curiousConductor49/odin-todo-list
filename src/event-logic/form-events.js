@@ -10,7 +10,7 @@ function handleItemDataSubmission(dataForm, event, itemId = null) {
     // validate form data
     handleFormLogic.handleInvalidInput(formData);
     // handle duplicate titles
-    handleFormLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"));
+    handleFormLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"), dataForm.id);
     // add or update form data in localStorage
     itemId === null ? handleFormLogic.sendNewFormData("todo-item", formData) : handleFormLogic.sendUpdatedFormData("todo-item", formData, itemId);
 }
@@ -24,7 +24,7 @@ function handleListDataSubmission(dataForm, event, listId = null) {
     // validate form data
     handleFormLogic.handleInvalidInput(formData);
     // handle duplicate titles
-    handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"));
+    handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"), dataForm.id);
     // add or update form data in localStorage
     listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
 }
