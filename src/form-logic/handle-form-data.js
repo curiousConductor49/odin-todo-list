@@ -1,9 +1,9 @@
-import addTodoItemToStorage from "../crud-ops/addTodoItemToStorage.js";
-import addTodoListToStorage from "../crud-ops/addTodoListToStorage.js";
-import updateTodoItemInStorage from "../crud-ops/updateTodoItemInStorage.js";
-import updateTodoListInStorage from "../crud-ops/updateTodoListInStorage.js";
-import createTodoItem from "../crud-ops/createTodoItem.js";
-import createTodoList from "../crud-ops/createTodoList.js";
+import addTodoItemToStorage from "../crud-ops/add-todo-item-to-storage.js";
+import addTodoListToStorage from "../crud-ops/add-todo-list-to-storage.js";
+import updateTodoItemInStorage from "../crud-ops/update-todo-item-in-storage.js";
+import updateTodoListInStorage from "../crud-ops/update-todo-list-in-storage.js";
+import createTodoItem from "../crud-ops/create-todo-item.js";
+import createTodoList from "../crud-ops/create-todo-list.js";
 
 export function handleInvalidInput(formInputs) {
     const invalidInputs = formInputs.filter(input => input.value === "");

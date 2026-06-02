@@ -1,8 +1,8 @@
 import * as formEvents from "./form-events.js";
 import * as dynamicHTMLPopulator from "../utility/dynamicHtmlPopulation.js";
 import * as displayTodoDataFromStorage from "../utility/displayTodoDataFromStorage.js"
-import deleteTodoItemFromStorage from "../crud-ops/deleteTodoItemFromStorage.js";
-import deleteTodoListFromStorage from "../crud-ops/deleteTodoListFromStorage.js";
+import deleteTodoItemFromStorage from "../crud-ops/delete-todo-item-from-storage.js";
+import deleteTodoListFromStorage from "../crud-ops/delete-todo-list-from-storage.js";
 
 export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event) {
     // get the todo item element
