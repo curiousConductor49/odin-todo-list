@@ -4,7 +4,7 @@ import initlocalStorageData from "./onPageLoad.js";
 import * as dynamicHTMLPopulator from "./utility/dynamic-form-population.js";
 import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
 import * as todoDataDisplayer from "./utility/display-todo-data.js";
-import * as formEvents from "./interaction-logic/form-events.js";
+import * as formInteractions from "./interaction-logic/form-interactions.js";
 import * as dataDisplayEvents from "./interaction-logic/data-display-events.js"
 
 
@@ -43,10 +43,10 @@ newItemBtn.addEventListener("click", () => {
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoItemFormFields();
 
     // handle using form
-    formEvents.handleTodoItemData(formDialog, createNewTodoDataForm, todoItemsDisplay);
+    formInteractions.handleTodoItemData(formDialog, createNewTodoDataForm, todoItemsDisplay);
 
     // handle closing form
-    formEvents.closeForm(formDialog, createNewTodoDataForm);
+    formInteractions.closeForm(formDialog, createNewTodoDataForm);
 });
 
 newListBtn.addEventListener("click", () => {
@@ -58,10 +58,10 @@ newListBtn.addEventListener("click", () => {
     createNewTodoDataForm.innerHTML = dynamicHTMLPopulator.populateNewTodoListFormFields();
 
     // handle using form
-    formEvents.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
+    formInteractions.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
     
     // handle closing form
-    formEvents.closeForm(formDialog, createNewTodoDataForm);
+    formInteractions.closeForm(formDialog, createNewTodoDataForm);
 });
 
 // utilize event delegation for individual todo item logic (viewing, updating, deleting)

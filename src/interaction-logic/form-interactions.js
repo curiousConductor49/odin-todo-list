@@ -1,32 +1,32 @@
 import * as todoDataDisplayer from "../utility/display-todo-data.js"
-import * as handleFormLogic from "../form-logic/handle-form-data.js";
+import * as handleFormDataLogic from "../form-logic/handle-form-data.js";
 
 // helper function for creating new data and updating existing data (todo items)
-function handleItemDataSubmission(dataForm, event, itemId = null) {
+function submitItemData(dataForm, event, itemId = null) {
     // prevent default form submission behaviour
     event.preventDefault();
     // get form data
-    const formData = handleFormLogic.getFormData(dataForm);
+    const formData = handleFormDataLogic.getFormData(dataForm);
     // validate form data
-    handleFormLogic.handleInvalidInput(formData);
+    handleFormDataLogic.handleInvalidInput(formData);
     // handle duplicate titles
-    handleFormLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"), dataForm.id);
+    handleFormDataLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"), dataForm.id);
     // add or update form data in localStorage
-    itemId === null ? handleFormLogic.sendNewFormData("todo-item", formData) : handleFormLogic.sendUpdatedFormData("todo-item", formData, itemId);
+    itemId === null ? handleFormDataLogic.sendNewFormData("todo-item", formData) : handleFormDataLogic.sendUpdatedFormData("todo-item", formData, itemId);
 }
 
 // helper function for creating new data and updating existing data (todo lists)
-function handleListDataSubmission(dataForm, event, listId = null) {
+function submitListData(dataForm, event, listId = null) {
     // prevent default form submission behaviour
     event.preventDefault();
     // get form data
-    const formData = handleFormLogic.getFormData(dataForm);
+    const formData = handleFormDataLogic.getFormData(dataForm);
     // validate form data
-    handleFormLogic.handleInvalidInput(formData);
+    handleFormDataLogic.handleInvalidInput(formData);
     // handle duplicate titles
-    handleFormLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"), dataForm.id);
+    handleFormDataLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"), dataForm.id);
     // add or update form data in localStorage
-    listId === null ? handleFormLogic.sendNewFormData("todo-list", formData) : handleFormLogic.sendUpdatedFormData("todo-list", formData, listId);
+    listId === null ? handleFormDataLogic.sendNewFormData("todo-list", formData) : handleFormDataLogic.sendUpdatedFormData("todo-list", formData, listId);
 }
 
 export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = null) {
@@ -34,7 +34,7 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleItemDataSubmission(dataForm, event, itemId);
+        submitItemData(dataForm, event, itemId);
         // toggle form visibility and close dialog
         dataForm.classList.toggle("hide");
         formDialog.close();
@@ -50,7 +50,7 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = n
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleListDataSubmission(dataForm, event, listId);
+        submitListData(dataForm, event, listId);
         // toggle form visibility and close dialog
         dataForm.classList.toggle("hide");
         formDialog.close();
@@ -64,7 +64,7 @@ export function handleSingleTodoListData(formDialog, dataForm, listId = null) {
 
     submitFormBtn.addEventListener("click", (event) => {
         // handle data submission
-        handleListDataSubmission(dataForm, event, listId);
+        submitListData(dataForm, event, listId);
         // toggle form display and close modal
         dataForm.classList.toggle("hide");
         formDialog.close();
