@@ -39,7 +39,7 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
         dataForm.classList.toggle("hide");
         formDialog.close();
         // update data display with all todo items if the data is not being displayed from a specific todo list
-        if (dataDisplay.id !== "single-todo-list-display") {
+        if (dataDisplay.id !== "selected-todo-list-display") {
             dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
         }
     });
@@ -54,8 +54,10 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = n
         // toggle form visibility and close dialog
         dataForm.classList.toggle("hide");
         formDialog.close();
-        // update todo lists data display
-        dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
+        // update data display with all todo lists if the data is not being displayed from a specific todo list
+        if (dataDisplay.id !== "selected-todo-list-display") {
+            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
+        }
     });
 }
 

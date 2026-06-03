@@ -1,6 +1,7 @@
 import * as formEvents from "./form-interactions.js";
 import * as dynamicFormPopulator from "../utility/dynamic-form-population.js";
 import * as todoDataDisplayer from "../utility/display-todo-data.js"
+import populateTodoListDropdown from "../utility/dynamic-selection-population.js";
 import deleteTodoItemFromStorage from "../crud-ops/delete-todo-item-from-storage.js";
 import deleteTodoListFromStorage from "../crud-ops/delete-todo-list-from-storage.js";
 
@@ -44,7 +45,7 @@ export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event)
     }
 }
 
-export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event) {
+export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, todoListDropdown, event) {
     // get the todo list element
     const todoList = event.target.closest(".todo-list");
     const todoListId = todoList.dataset.id;
@@ -72,6 +73,8 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
                 const todoLists = appData["todoLists"];
                 const todoListData = todoLists.find(list => list.id === todoListId);
                 todoDataDisplayer.updateTodoListElement(todoList, todoListData);
+                // refresh options for todo list selection
+                todoListDropdown.innerHTML = populateTodoListDropdown();
             } catch (error) {
                 console.log("Error:", error);
             }
@@ -83,10 +86,13 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
         // delete todo list from storage and dom
         deleteTodoListFromStorage(todoList);
         todoList.remove();
+
+        // refresh options for todo list selection
+        todoListDropdown.innerHTML = populateTodoListDropdown();
     }
 }
 
-export function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, event) {
+export function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay, todoListDropdown, event) {
     // get event target
     const targetParentEl = event.target.parentElement;
     if (targetParentEl.closest(".todo-item")) {
@@ -94,6 +100,6 @@ export function handleUpdatingSelectedTodoList(formDialog, dataForm, dataDisplay
         handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event);
     } else if (targetParentEl.closest(".todo-list")) {
         // event delegation for when a todo list is clicked
-        handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event);
+        handleUpdatingTodoList(formDialog, dataForm, dataDisplay, todoListDropdown, event);
     }
 }
