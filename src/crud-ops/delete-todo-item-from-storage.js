@@ -3,8 +3,6 @@ export default function deleteTodoItemFromStorage(todoItemEl) {
         // get and set json data to the updated array of todo items
         const appData = JSON.parse(localStorage.getItem("todoAppData"));
         const todoItemsData = appData["todoItems"];
-        // temp value for testing, the actual arg should be the DOM el for the todo item whose data-* attribute is accessed
-        // const todoItemId = todoItemEl;
         const todoItemId = todoItemEl.dataset.id;
         const todoItemIndex = todoItemsData.findIndex(item => item["id"] === todoItemId);
         const updatedTodoItems = todoItemsData.toSpliced(todoItemIndex, 1);
