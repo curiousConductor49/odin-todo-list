@@ -3,13 +3,7 @@ import * as handleFormDataLogic from "../form-logic/handle-form-data.js";
 import populateTodoListDropdown from "../utility/dynamic-selection-population.js";
 
 // helper function for creating new data and updating existing data (todo items)
-function submitItemData(dataForm, event, itemId = null) {
-    // prevent default form submission behaviour
-    event.preventDefault();
-    // get form data
-    const formData = handleFormDataLogic.getFormData(dataForm);
-    // validate form data
-    handleFormDataLogic.handleInvalidInput(formData);
+function submitItemData(dataForm, formData, itemId = null) {
     // handle duplicate titles
     handleFormDataLogic.handleTitleDuplicates("todo-item", dataForm.querySelector("#item-title"), dataForm.id);
     // add or update form data in localStorage
@@ -17,13 +11,7 @@ function submitItemData(dataForm, event, itemId = null) {
 }
 
 // helper function for creating new data and updating existing data (todo lists)
-function submitListData(dataForm, event, listId = null) {
-    // prevent default form submission behaviour
-    event.preventDefault();
-    // get form data
-    const formData = handleFormDataLogic.getFormData(dataForm);
-    // validate form data
-    handleFormDataLogic.handleInvalidInput(formData);
+function submitListData(dataForm, formData, listId = null) {
     // handle duplicate titles
     handleFormDataLogic.handleTitleDuplicates("todo-list", dataForm.querySelector("#list-title"), dataForm.id);
     // add or update form data in localStorage
@@ -34,14 +22,25 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
-        // handle data submission
-        submitItemData(dataForm, event, itemId);
-        // toggle form visibility and close dialog
-        dataForm.classList.toggle("hide");
-        formDialog.close();
-        // update data display with all todo items if the data is not being displayed from a specific todo list
-        if (dataDisplay.id !== "selected-todo-list-display") {
-            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+        // prevent default form submission behaviour
+        event.preventDefault();
+        // get form data
+        const formData = handleFormDataLogic.getFormData(dataForm);
+        // validity check
+        const validityCheckPass = handleFormDataLogic.handleInvalidInput(formData);
+    
+        if (validityCheckPass) {
+            // handle data submission
+            submitItemData(dataForm, formData, itemId);
+
+            // toggle form visibility and close dialog
+            dataForm.classList.toggle("hide");
+            formDialog.close();
+            
+            // update data display with all todo items if the data is not being displayed from a specific todo list
+            if (dataDisplay.id !== "selected-todo-list-display") {
+                dataDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+            }
         }
     });
 }
@@ -50,16 +49,28 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, todoListDr
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
-        // handle data submission
-        submitListData(dataForm, event, listId);
-        // toggle form visibility and close dialog
-        dataForm.classList.toggle("hide");
-        formDialog.close();
-        // refresh options for specific todo list selection
-        todoListDropdown.innerHTML = populateTodoListDropdown();
-        // update data display with all todo lists if the data is not being displayed from a specific todo list
-        if (dataDisplay.id !== "selected-todo-list-display") {
-            dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
+        // prevent default form submission behaviour
+        event.preventDefault();
+        // get form data
+        const formData = handleFormDataLogic.getFormData(dataForm);
+        // validate form data
+        const validityCheckPass = handleFormDataLogic.handleInvalidInput(formData);
+
+        if (validityCheckPass) {
+            // handle data submission
+            submitListData(dataForm, formData, listId);
+
+            // toggle form visibility and close dialog
+            dataForm.classList.toggle("hide");
+            formDialog.close();
+
+            // refresh options for specific todo list selection
+            todoListDropdown.innerHTML = populateTodoListDropdown();
+
+            // update data display with all todo lists if the data is not being displayed from a specific todo list
+            if (dataDisplay.id !== "selected-todo-list-display") {
+                dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();
+            }
         }
     });
 }

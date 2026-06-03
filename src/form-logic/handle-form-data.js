@@ -9,7 +9,9 @@ export function handleInvalidInput(formInputs) {
     const invalidInputs = formInputs.filter(input => input.value === "");
     if (invalidInputs.length > 0) {
         alert(`Please fill in the value for ${invalidInputs.map(input => input.id.split("-").join(" ")).join(", ")}`);
-        return;
+        return false;
+    } else {
+        return true;
     }
 }
 
