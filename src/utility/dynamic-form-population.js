@@ -29,7 +29,7 @@ export function populateNewTodoItemFormFields() {
             </div>
             
             <div class="field-container">
-                <label for="todo-list-parent">Todo List:</label>
+                <label for="todo-list-parent">Purr:</label>
                 <select id="todo-list-parent">
                     ${populateTodoListDropdown()};
                 </select>
@@ -123,7 +123,7 @@ export function populateExistingTodoItemFormFields(todoItemId) {
             </div>
             
             <div class="field-container">
-                <label for="todo-list-parent">Todo List:</label>
+                <label for="todo-list-parent">Purr:</label>
                 <select id="todo-list-parent">
                     ${parentListOptionsHTML}
                 </select>

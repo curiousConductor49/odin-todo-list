@@ -7,8 +7,8 @@ export function createTodoItemElement(todoItemData) {
     const todoItemEl = `
         <div class="todo-item" data-id="${id}">
             <p class="item-title">${title}</p>
-            <time class="item-due-date" datetime="${dueDate}">${formattedDueDate}</time>
-            <p class="item-priority">${priority}</p>
+            <time class="item-due-date" datetime="${dueDate}">due: ${formattedDueDate}</time>
+            <p class="item-priority">priority: ${priority}</p>
             <div class="item-btn-container">
                 <button class="update-item-btn">Update</button>
                 <button class="delete-item-btn">Delete</button>
