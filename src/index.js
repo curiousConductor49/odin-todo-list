@@ -107,9 +107,9 @@ allListsBtn.addEventListener("click", () => {
 todoListDropdown.addEventListener("change", (event) => {
     // hide other displays
     displays.forEach(display => {
-        if (display.id === "single-todo-list-display" && [...display.classList].includes("hide")) {
+        if (display.id === "selected-todo-list-display" && [...display.classList].includes("hide")) {
             display.classList.remove("hide");
-        } else if (display.id !== "single-todo-list-display") {
+        } else if (display.id !== "selected-todo-list-display") {
             display.classList.add("hide");
         }
     })
