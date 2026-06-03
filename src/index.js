@@ -1,6 +1,7 @@
 // imports
 import "./styles.css";
-import initlocalStorageData from "./on-page-load.js";
+// import initlocalStorageData from "./on-page-load.js";
+import * as onPageLoad from "./on-page-load.js";
 import * as dynamicFormPopulator from "./utility/dynamic-form-population.js";
 import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
 import * as todoDataDisplayer from "./utility/display-todo-data.js";
@@ -30,8 +31,13 @@ const formToCreateTodoData = document.querySelector("#create-new");
 const formToUpdateTodoData = document.querySelector("#update-existing");
 
 // upon complete page load, initialize app data and populate the todo list dropdown based on app data
-window.addEventListener("load", initlocalStorageData);
-window.addEventListener("load", () => todoListDropdown.innerHTML = populateTodoListDropdown());
+window.addEventListener("load", onPageLoad.initlocalStorageData);
+window.addEventListener("load", () => {
+    todoListDropdown.innerHTML = populateTodoListDropdown();
+    if (onPageLoad.doesTodoItemDataExist()) {
+        todoItemsDisplay.innerHTML = todoDataDisplayer.createAllTodoItemElements();
+    }
+});
 
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
