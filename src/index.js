@@ -71,7 +71,10 @@ todoItemsDisplay.addEventListener("click", (event) => todoDataInteractions.handl
 todoListsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoList(formDialog, formToUpdateTodoData, todoListsDisplay, event));
 
 // utilize event delegation for selected todo list logic (viewing, updating, deleting)
-selectedTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, formToUpdateTodoData, selectedTodoListDisplay, event));
+selectedTodoListDisplay.addEventListener("click", (event) => {
+    todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, formToUpdateTodoData, selectedTodoListDisplay, event)
+    todoListDropdown.innerHTML = populateTodoListDropdown();
+});
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {
