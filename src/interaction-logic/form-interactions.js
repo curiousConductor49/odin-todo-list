@@ -1,5 +1,6 @@
 import * as todoDataDisplayer from "../utility/display-todo-data.js"
 import * as handleFormDataLogic from "../form-logic/handle-form-data.js";
+import populateTodoListDropdown from "../utility/dynamic-selection-population.js";
 
 // helper function for creating new data and updating existing data (todo items)
 function submitItemData(dataForm, event, itemId = null) {
@@ -45,7 +46,7 @@ export function handleTodoItemData(formDialog, dataForm, dataDisplay, itemId = n
     });
 }
 
-export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = null) {
+export function handleTodoListData(formDialog, dataForm, dataDisplay, todoListDropdown, listId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
@@ -54,6 +55,8 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = n
         // toggle form visibility and close dialog
         dataForm.classList.toggle("hide");
         formDialog.close();
+        // refresh options for specific todo list selection
+        todoListDropdown.innerHTML = populateTodoListDropdown();
         // update data display with all todo lists if the data is not being displayed from a specific todo list
         if (dataDisplay.id !== "selected-todo-list-display") {
             dataDisplay.innerHTML = todoDataDisplayer.createAllTodoListElements();

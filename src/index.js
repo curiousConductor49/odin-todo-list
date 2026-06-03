@@ -58,7 +58,7 @@ newListBtn.addEventListener("click", () => {
     formToCreateTodoData.innerHTML = dynamicFormPopulator.populateNewTodoListFormFields();
 
     // handle using form
-    formInteractions.handleTodoListData(formDialog, formToCreateTodoData, todoListsDisplay);
+    formInteractions.handleTodoListData(formDialog, formToCreateTodoData, todoListsDisplay, todoListDropdown);
     
     // handle closing form
     formInteractions.closeForm(formDialog, formToCreateTodoData);
