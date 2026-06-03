@@ -24,10 +24,10 @@ const todoListsDisplay = document.querySelector("#todo-lists-display");
 const singleTodoListDisplay = document.querySelector("#single-todo-list-display");
 const displays = [todoItemsDisplay, todoListsDisplay, singleTodoListDisplay];
 
-// container for forms to enter todo data
+// forms to create and update todo data
 const formDialog = document.querySelector("#form-dialog");
-const createNewTodoDataForm = document.querySelector("#create-new");
-const updateExistingTodoDataForm = document.querySelector("#update-existing");
+const formToCreateTodoData = document.querySelector("#create-new");
+const formToUpdateTodoData = document.querySelector("#update-existing");
 
 // upon complete page load, initialize app data and populate the todo list dropdown based on app data
 window.addEventListener("load", initlocalStorageData);
@@ -36,42 +36,42 @@ window.addEventListener("load", () => todoListDropdown.innerHTML = populateTodoL
 // creating new todo data
 newItemBtn.addEventListener("click", () => {
     // toggle visibility of create-new form and open dialog
-    createNewTodoDataForm.classList.toggle("hide");
+    formToCreateTodoData.classList.toggle("hide");
     formDialog.showModal();
 
     // populate form
-    createNewTodoDataForm.innerHTML = dynamicFormPopulator.populateNewTodoItemFormFields();
+    formToCreateTodoData.innerHTML = dynamicFormPopulator.populateNewTodoItemFormFields();
 
     // handle using form
-    formInteractions.handleTodoItemData(formDialog, createNewTodoDataForm, todoItemsDisplay);
+    formInteractions.handleTodoItemData(formDialog, formToCreateTodoData, todoItemsDisplay);
 
     // handle closing form
-    formInteractions.closeForm(formDialog, createNewTodoDataForm);
+    formInteractions.closeForm(formDialog, formToCreateTodoData);
 });
 
 newListBtn.addEventListener("click", () => {
     // toggle visibility of create-new form and open dialog
-    createNewTodoDataForm.classList.toggle("hide");
+    formToCreateTodoData.classList.toggle("hide");
     formDialog.showModal();
 
     // populate form
-    createNewTodoDataForm.innerHTML = dynamicFormPopulator.populateNewTodoListFormFields();
+    formToCreateTodoData.innerHTML = dynamicFormPopulator.populateNewTodoListFormFields();
 
     // handle using form
-    formInteractions.handleTodoListData(formDialog, createNewTodoDataForm, todoListsDisplay);
+    formInteractions.handleTodoListData(formDialog, formToCreateTodoData, todoListsDisplay);
     
     // handle closing form
-    formInteractions.closeForm(formDialog, createNewTodoDataForm);
+    formInteractions.closeForm(formDialog, formToCreateTodoData);
 });
 
 // utilize event delegation for individual todo item logic (viewing, updating, deleting)
-todoItemsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoItem(formDialog, updateExistingTodoDataForm, todoItemsDisplay, event));
+todoItemsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoItem(formDialog, formToUpdateTodoData, todoItemsDisplay, event));
 
 // utilize event delegation for individual todo list logic (viewing, updating, deleting)
-todoListsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoList(formDialog, updateExistingTodoDataForm, todoListsDisplay, event));
+todoListsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoList(formDialog, formToUpdateTodoData, todoListsDisplay, event));
 
 // utilize event delegation for selected todo list logic (viewing, updating, deleting)
-singleTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, updateExistingTodoDataForm, singleTodoListDisplay, event));
+singleTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, formToUpdateTodoData, singleTodoListDisplay, event));
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {
