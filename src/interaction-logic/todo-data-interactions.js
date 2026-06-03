@@ -59,7 +59,7 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, event)
         formDialog.showModal();
 
         // handle form submission (for either all todo lists or a single todo list displayed from the selection dropdown)
-        todoList.parentElement.id === "single-todo-list-display" ? formEvents.handleSingleTodoListData(formDialog, dataForm, todoListId) : formEvents.handleTodoListData(formDialog, dataForm, dataDisplay, todoListId);
+        todoList.parentElement.id === "single-todo-list-display" ? formEvents.handleSelectedTodoListData(formDialog, dataForm, todoListId) : formEvents.handleTodoListData(formDialog, dataForm, dataDisplay, todoListId);
 
         // handle form closing
         formEvents.closeForm(formDialog, dataForm);

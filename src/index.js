@@ -21,8 +21,8 @@ const todoListDropdown = document.querySelector("#todo-list-dropdown");
 // containers to display todo data
 const todoItemsDisplay = document.querySelector("#todo-items-display");
 const todoListsDisplay = document.querySelector("#todo-lists-display");
-const singleTodoListDisplay = document.querySelector("#single-todo-list-display");
-const displays = [todoItemsDisplay, todoListsDisplay, singleTodoListDisplay];
+const selectedTodoListDisplay = document.querySelector("#selected-todo-list-display");
+const displays = [todoItemsDisplay, todoListsDisplay, selectedTodoListDisplay];
 
 // forms to create and update todo data
 const formDialog = document.querySelector("#form-dialog");
@@ -71,7 +71,7 @@ todoItemsDisplay.addEventListener("click", (event) => todoDataInteractions.handl
 todoListsDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingTodoList(formDialog, formToUpdateTodoData, todoListsDisplay, event));
 
 // utilize event delegation for selected todo list logic (viewing, updating, deleting)
-singleTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, formToUpdateTodoData, singleTodoListDisplay, event));
+selectedTodoListDisplay.addEventListener("click", (event) => todoDataInteractions.handleUpdatingSelectedTodoList(formDialog, formToUpdateTodoData, selectedTodoListDisplay, event));
 
 // dynamically populate displays with todo data
 allItemsBtn.addEventListener("click", () => {
@@ -115,5 +115,5 @@ todoListDropdown.addEventListener("change", (event) => {
     })
 
     // show list and todo items within list
-    singleTodoListDisplay.innerHTML = todoDataDisplayer.createSelectedTodoListElement(event.target);
+    selectedTodoListDisplay.innerHTML = todoDataDisplayer.createSelectedTodoListElement(event.target);
 });

@@ -59,7 +59,7 @@ export function handleTodoListData(formDialog, dataForm, dataDisplay, listId = n
     });
 }
 
-export function handleSingleTodoListData(formDialog, dataForm, listId = null) {
+export function handleSelectedTodoListData(formDialog, dataForm, listId = null) {
     const submitFormBtn = dataForm.querySelector("#submit-form-btn");
 
     submitFormBtn.addEventListener("click", (event) => {
