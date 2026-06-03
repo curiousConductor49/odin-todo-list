@@ -1,6 +1,5 @@
 // imports
 import "./styles.css";
-// import initlocalStorageData from "./on-page-load.js";
 import * as onPageLoad from "./on-page-load.js";
 import * as dynamicFormPopulator from "./utility/dynamic-form-population.js";
 import populateTodoListDropdown from "./utility/dynamic-selection-population.js";
