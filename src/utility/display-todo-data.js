@@ -46,8 +46,8 @@ export function updateTodoItemElement(todoItemEl, todoItemData) {
     const arr = dueDate.split("-");
     const formattedDueDate = new Date(...arr.map(int => arr.indexOf(int) === 1 ? parseInt(int) - 1 : parseInt(int))).toDateString();
     itemTitle.textContent = title;
-    itemDueDate.textContent = formattedDueDate;
-    itemPriority.textContent = priority;
+    itemDueDate.textContent = `due: ${formattedDueDate}`;
+    itemPriority.textContent = `priority: ${priority}`;
 }
 
 export function updateTodoListElement(todoListEl, todoListData) {
