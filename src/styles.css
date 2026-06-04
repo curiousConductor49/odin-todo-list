@@ -102,6 +102,20 @@ h1 {
     cursor: pointer;
 }
 
+#selected-todo-list-display {
+    margin: 1.15rem;
+    padding: 0.75rem;
+}
+
+#selected-todo-list-display .todo-items > * {
+    border: 2px solid pink;
+    padding: 0.75rem;
+}
+
+#selected-todo-list-display .todo-items > * > * {
+    margin: 0.75rem;
+}
+
 #forms-container {
     /* border: 2px solid black; */
     grid-column: 1 / 5;
@@ -149,7 +163,7 @@ h1 {
 }
 
 /* mobile responsiveness */
-@media (max-width: 630px) {
+@media (max-width: 700px) {
     #control-panel {
         grid-row: 2 / 3;
         grid-column: 1 / 5;
