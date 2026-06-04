@@ -147,3 +147,16 @@ h1 {
 #form-dialog .btn-container button {
     cursor: pointer;
 }
+
+/* mobile responsiveness */
+@media (max-width: 630px) {
+    #control-panel {
+        grid-row: 2 / 3;
+        grid-column: 1 / 5;
+    }
+
+    #displays-container {
+        grid-row: 3 / 4;
+        grid-column: 1 / 5;
+    }
+}
