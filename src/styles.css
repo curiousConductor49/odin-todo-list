@@ -19,7 +19,6 @@
 }
 
 #app-dashboard {
-    border: 2px solid black;
     max-width: fit-content;
     margin-inline: auto;
     margin-block: 1.75rem;
@@ -37,17 +36,10 @@ h1 {
 
 #control-panel {
     border: 2px solid blue;
+    border-radius: 5px;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     padding: 0.75rem;
-}
-
-.new-btns-container {
-    border: 2px solid purple;
-}
-
-.view-options-container {
-    border: 2px solid red;
 }
 
 .new-btns-container, .view-options-container {
@@ -62,6 +54,7 @@ h1 {
     font-size: 1rem;
     padding: 0.25rem;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .view-options-container label {
@@ -72,10 +65,12 @@ h1 {
 .view-options-container select {
     font-size: 1.15rem;
     padding: 0.25rem;
+    border-radius: 5px;
 }
 
 #displays-container {
     border: 2px solid yellow;
+    border-radius: 5px;
     grid-row: 2 / 3;
     grid-column: 2 / 5;
 }
@@ -87,6 +82,7 @@ h1 {
 
 .data-display > * {
     border: 2px solid pink;
+    border-radius: 10px;
     margin: 1.15rem;
     padding: 0.75rem;
 }
@@ -100,6 +96,7 @@ h1 {
     font-size: 1.15rem;
     padding: 0.25rem;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #selected-todo-list-display {
@@ -117,7 +114,6 @@ h1 {
 }
 
 #forms-container {
-    /* border: 2px solid black; */
     grid-column: 1 / 5;
 }
 
@@ -145,6 +141,7 @@ h1 {
 #form-dialog .field-container input, #form-dialog .field-container textarea, #form-dialog .field-container select, #form-dialog .btn-container button {
     font-size: 1.15rem;
     padding: 0.25rem;
+    border-radius: 5px;
 }
 
 #form-dialog .field-container textarea {
