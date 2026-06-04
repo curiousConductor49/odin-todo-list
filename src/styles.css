@@ -1,3 +1,149 @@
+/* colour variables */
+:root {
+    --primary: #F68080;
+    --secondary: #F9B16E;
+    --text: #1D1C1C;
+    --backgrond: #f1f1f1;
+}
+
+/* visibility toggle */
 .hide {
     display: none;
+}
+
+/* app appearance */
+*, *::before, *::after {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+}
+
+#app-dashboard {
+    border: 2px solid black;
+    max-width: fit-content;
+    margin-inline: auto;
+    margin-block: 1.75rem;
+    padding: 1.25rem;
+    display: grid;
+    grid-template-rows: 0.5fr 2fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.15rem;
+}
+
+h1 {
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+}
+
+#control-panel {
+    border: 2px solid blue;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    padding: 0.75rem;
+}
+
+.new-btns-container {
+    border: 2px solid purple;
+}
+
+.view-options-container {
+    border: 2px solid red;
+}
+
+.new-btns-container, .view-options-container {
+    padding: 0.75rem;
+}
+
+.new-btns-container > *, .view-options-container > * {
+    margin: 0.25rem;
+}
+
+.new-btns-container > button, .view-options-container > button {
+    font-size: 1rem;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.view-options-container label {
+    display: block;
+    font-size: 1.25rem;
+}
+
+.view-options-container select {
+    font-size: 1.15rem;
+    padding: 0.25rem;
+}
+
+#displays-container {
+    border: 2px solid yellow;
+    grid-row: 2 / 3;
+    grid-column: 2 / 5;
+}
+
+.data-display {
+    max-height: 25rem;
+    overflow-y: scroll;
+}
+
+.data-display > * {
+    border: 2px solid pink;
+    margin: 1.15rem;
+    padding: 0.75rem;
+}
+
+.data-display > * > * {
+    margin: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.data-display > * button {
+    font-size: 1.15rem;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+#forms-container {
+    /* border: 2px solid black; */
+    grid-column: 1 / 5;
+}
+
+#form-dialog {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 1.25rem;
+}
+
+#form-dialog .field-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#form-dialog .field-container, #form-dialog .btn-container {
+    margin: 0.75rem;
+    font-size: 1.25rem;
+}
+
+#form-dialog .field-container input, #form-dialog .field-container textarea, #form-dialog .field-container select, #form-dialog .btn-container button {
+    font-size: 1.15rem;
+    padding: 0.25rem;
+}
+
+#form-dialog .field-container textarea {
+    resize: vertical;
+    max-height: 40vh;
+    min-height: 5vh;
+}
+
+#form-dialog .btn-container {
+    max-width: fit-content;
+    margin-inline: auto;
+}
+
+#form-dialog .btn-container button {
+    cursor: pointer;
 }
