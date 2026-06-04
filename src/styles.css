@@ -92,6 +92,11 @@ h1 {
     font-size: 1.25rem;
 }
 
+.data-display > * > .item-btn-container, .data-display .todo-items .item-btn-container, .data-display .todo-list .btn-container {
+    display: flex;
+    gap: 10px;
+}
+
 .data-display > * button {
     font-size: 1.15rem;
     padding: 0.25rem;
@@ -153,6 +158,8 @@ h1 {
 #form-dialog .btn-container {
     max-width: fit-content;
     margin-inline: auto;
+    display: flex;
+    gap: 15px;
 }
 
 #form-dialog .btn-container button {
