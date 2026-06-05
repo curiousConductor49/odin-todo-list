@@ -3,7 +3,7 @@
     --primary: #F68080;
     --secondary: #F9B16E;
     --text: #1D1C1C;
-    --backgrond: #f1f1f1;
+    --background: #f1f1f1;
 }
 
 /* visibility toggle */
@@ -29,13 +29,34 @@
     gap: 1.15rem;
 }
 
+* {
+    font-family: "Nunito", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--text);
+}
+
+body {
+    background-color: var(--background);
+}
+
 h1 {
+    font-family: "DynaPuff", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.75rem;
+    background-image: linear-gradient(to right, var(--secondary), var(--primary));
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
     grid-column: 1 / 5;
     grid-row: 1 / 2;
 }
 
+h2 {
+    font-family: "DynaPuff", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+
 #control-panel {
-    border: 2px solid blue;
+    border: 2px solid var(--secondary);
     border-radius: 5px;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
@@ -51,10 +72,13 @@ h1 {
 }
 
 .new-btns-container > button, .view-options-container > button {
-    font-size: 1rem;
+    font-size: 1.15rem;
     padding: 0.25rem;
     cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--background);
     border-radius: 5px;
+    border: 2px solid var(--secondary);
 }
 
 .view-options-container label {
@@ -66,10 +90,11 @@ h1 {
     font-size: 1.15rem;
     padding: 0.25rem;
     border-radius: 5px;
+    border: 2px solid var(--secondary);
 }
 
 #displays-container {
-    border: 2px solid yellow;
+    border: 2px solid var(--primary);
     border-radius: 5px;
     grid-row: 2 / 3;
     grid-column: 2 / 5;
@@ -80,8 +105,8 @@ h1 {
     overflow-y: scroll;
 }
 
-.data-display > * {
-    border: 2px solid pink;
+.data-display > *, #selected-todo-list-display .todo-items > * {
+    border: 2px solid var(--text);
     border-radius: 10px;
     margin: 1.15rem;
     padding: 0.75rem;
@@ -98,10 +123,13 @@ h1 {
 }
 
 .data-display > * button {
-    font-size: 1.15rem;
+    font-size: 1.20rem;
     padding: 0.25rem;
     cursor: pointer;
+    background-color: var(--primary);
+    color: var(--background);
     border-radius: 5px;
+    border: 2px solid var(--primary);
 }
 
 #selected-todo-list-display {
@@ -110,7 +138,7 @@ h1 {
 }
 
 #selected-todo-list-display .todo-items > * {
-    border: 2px solid pink;
+    border: 2px solid var(--primary);
     padding: 0.75rem;
 }
 
@@ -129,6 +157,9 @@ h1 {
     bottom: 0;
     margin: auto;
     padding: 1.25rem;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    background: linear-gradient(to right, #fff, #fff) padding-box, linear-gradient(to right, var(--secondary), var(--primary)) border-box;
 }
 
 #form-dialog .field-container {
@@ -141,6 +172,11 @@ h1 {
 #form-dialog .field-container, #form-dialog .btn-container {
     margin: 0.75rem;
     font-size: 1.25rem;
+}
+
+#form-dialog .field-container input, #form-dialog .field-container textarea, #form-dialog .field-container select {
+    border: 2px solid var(--secondary);
+    border-radius: 3px;
 }
 
 #form-dialog .field-container input, #form-dialog .field-container textarea, #form-dialog .field-container select, #form-dialog .btn-container button {
@@ -158,12 +194,19 @@ h1 {
 #form-dialog .btn-container {
     max-width: fit-content;
     margin-inline: auto;
+    margin-top: 1.75rem;
     display: flex;
     gap: 15px;
 }
 
 #form-dialog .btn-container button {
+    font-size: 1.15rem;
+    padding: 0.25rem;
     cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--background);
+    border-radius: 5px;
+    border: 2px solid var(--secondary);
 }
 
 /* mobile responsiveness */
