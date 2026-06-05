@@ -6,12 +6,12 @@ export function populateNewTodoItemFormFields() {
         const formFieldsHTML = `
             <div class="field-container">
                 <label for="item-title">Name:</label>
-                <input type="text" id="item-title" name="item-title" placeholder="purring...">
+                <input type="text" id="item-title" name="item-title" placeholder="knock over a vase">
             </div>
             
             <div class="field-container">
                 <label for="item-description">Description: </label>
-                <textarea id="item-description" col="15" row="30" placeholder="meow, meow, meow..."></textarea>
+                <textarea id="item-description" col="15" row="30" placeholder="meowing for forgiveness..."></textarea>
             </div>
             
             <div class="field-container">
@@ -52,12 +52,12 @@ export function populateNewTodoListFormFields() {
         const formFieldsHTML = `
             <div class="field-container">
                 <label for="list-title">Name:</label>
-                <input type="text" id="list-title" name="list-title" placeholder="a guide to making lap biscuits">
+                <input type="text" id="list-title" name="list-title" placeholder="lap biscuits">
             </div>
             
             <div class="field-container">
                 <label for="list-description">Description: </label>
-                <textarea id="list-description" col="15" row="30" placeholder="baking biscuits, baking biscuits!"></textarea>
+                <textarea id="list-description" col="15" row="30" placeholder="biscuit making in progress..."></textarea>
             </div>
             
             <div class="btn-container">
