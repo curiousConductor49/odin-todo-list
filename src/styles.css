@@ -11,6 +11,11 @@
     display: none;
 }
 
+/* bolding */
+.bolded {
+    font-weight: 700;
+}
+
 /* app appearance */
 *, *::before, *::after {
     box-sizing: content-box;

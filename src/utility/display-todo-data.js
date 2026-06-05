@@ -6,9 +6,17 @@ export function createTodoItemElement(todoItemData) {
     const formattedDueDate = new Date(...arr.map(int => arr.indexOf(int) === 1 ? parseInt(int) - 1 : parseInt(int))).toDateString();
     const todoItemEl = `
         <div class="todo-item" data-id="${id}">
-            <p class="item-title">${title}</p>
-            <time class="item-due-date" datetime="${dueDate}">due: ${formattedDueDate}</time>
-            <p class="item-priority">priority: ${priority}</p>
+            <p class="item-title">
+                <span class="bolded">${title}</span
+            ></p>
+            <time class="item-due-date" datetime="${dueDate}">
+                <span class="bolded">due:</span>
+                ${formattedDueDate}
+            </time>
+            <p class="item-priority">
+                <span class="bolded">priority:</span>
+                ${priority}
+            </p>
             <div class="item-btn-container">
                 <button class="update-item-btn">Update</button>
                 <button class="delete-item-btn">Delete</button>
@@ -24,7 +32,9 @@ export function createTodoListElement(todoListData) {
     // create html
     const todoListEl = `
         <div class="todo-list" data-id="${id}">
-            <p class="list-title">${title}</p>
+            <p class="list-title">
+                <span class="bolded">${title}</span>
+                </p>
             <p class="list-description">${description}</p>
             <div class="item-btn-container">
                 <button class="update-list-btn">Update</button>
