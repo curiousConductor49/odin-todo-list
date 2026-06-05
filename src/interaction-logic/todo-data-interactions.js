@@ -1,4 +1,4 @@
-import * as formEvents from "./form-interactions.js";
+import * as formInteractions from "./form-interactions.js";
 import * as dynamicFormPopulator from "../utility/dynamic-form-population.js";
 import * as todoDataDisplayer from "../utility/display-todo-data.js"
 import populateTodoListDropdown from "../utility/dynamic-selection-population.js";
@@ -20,8 +20,8 @@ export function handleUpdatingTodoItem(formDialog, dataForm, dataDisplay, event)
         formDialog.showModal();
 
         // handle form submission and closing
-        formEvents.handleTodoItemData(formDialog, dataForm, dataDisplay, todoItemId);
-        formEvents.closeForm(formDialog, dataForm);
+        formInteractions.handleTodoItemData(formDialog, dataForm, dataDisplay, todoItemId);
+        formInteractions.closeForm(formDialog, dataForm);
 
         // update dom element
         const submitFormBtn = dataForm.querySelector("#submit-form-btn");
@@ -60,10 +60,10 @@ export function handleUpdatingTodoList(formDialog, dataForm, dataDisplay, todoLi
         formDialog.showModal();
 
         // handle form submission (for either all todo lists or a single todo list displayed from the selection dropdown)
-        todoList.parentElement.id === "single-todo-list-display" ? formEvents.handleSelectedTodoListData(formDialog, dataForm, todoListId) : formEvents.handleTodoListData(formDialog, dataForm, dataDisplay, todoListDropdown, todoListId);
+        todoList.parentElement.id === "single-todo-list-display" ? formInteractions.handleSelectedTodoListData(formDialog, dataForm, todoListId) : formInteractions.handleTodoListData(formDialog, dataForm, dataDisplay, todoListDropdown, todoListId);
 
         // handle form closing
-        formEvents.closeForm(formDialog, dataForm);
+        formInteractions.closeForm(formDialog, dataForm);
 
         // update dom element
         const submitFormBtn = dataForm.querySelector("#submit-form-btn");
