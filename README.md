@@ -8,6 +8,8 @@ A simple todo list app that keeps your tasks as cat-themed memos. Made in vanill
 - All todo app data is stored in the browser via `localStorage`; as long as you don't clear your cookies, your meows and purrs will be right where you left them!
 ## Local Setup:
 1. Clone the repo (SSH key): `git@github.com:curiousConductor49/odin-todo-list.git`
-2. Use VSCode's live preview extension to run it locally in the browser!
+2. Install dependencies with `npm install`
+3. Run `npm run dev` in the CLI
+4. Open it up in the browser!
 ## Live Site
 Visit the live site at the link in the About section.
